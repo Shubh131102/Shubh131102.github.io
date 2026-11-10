@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Shubham Jangle — Robotics Engineer</title>
+<meta name="description" content="Shubham Jangle — robotics engineer designing, building, and validating humanoid robot hardware. MS Robotics, UC Riverside.">
 <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Syne:wght@400;500;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -705,6 +706,31 @@
     .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
     footer { flex-direction: column; gap: 1rem; padding: 1.5rem; }
   }
+
+  /* ADDITIONS */
+  .projects-grid > .project-card:last-child:nth-child(odd) { grid-column: span 2; }
+  .exp-item.current .exp-title::after {
+    content: 'Current';
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--green);
+    background: var(--green-bg);
+    padding: 2px 8px;
+    margin-left: 10px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    vertical-align: middle;
+  }
+  .exp-sub {
+    font-size: 14px;
+    color: var(--text2);
+    margin-bottom: 1rem;
+    line-height: 1.7;
+  }
+  @media (max-width: 768px) {
+    .projects-grid > .project-card:last-child:nth-child(odd) { grid-column: auto; }
+    .hero-stats .stat-number { font-size: 1.8rem; }
+  }
 </style>
 </head>
 <body>
@@ -714,47 +740,47 @@
   <a href="#" class="nav-logo">SJ.ENG</a>
   <ul class="nav-links">
     <li><a href="#about">About</a></li>
-    <li><a href="#skills">Skills</a></li>
     <li><a href="#experience">Experience</a></li>
     <li><a href="#projects">Projects</a></li>
+    <li><a href="#skills">Skills</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
   <div class="nav-status">
     <div class="status-dot"></div>
-    Available — F-1 OPT
+    Building humanoids @ Foundation
   </div>
 </nav>
 
 <!-- HERO -->
 <div class="hero">
-  <div class="hero-tag">MS Robotics — UC Riverside</div>
+  <div class="hero-tag">Robotics Build Engineer — Foundation</div>
   <h1>Shubham</h1>
   <h1>Jangle</h1>
   <p class="hero-subtitle">Robotics Engineer</p>
   <p class="hero-desc">
-    I build robotics systems across the full stack — from <strong>mechanical design and FEA analysis</strong> to <strong>ROS2 autonomy stacks and deep learning perception</strong>. Hardware and software, end to end.
+    I design, build, and validate <strong>humanoid robot hardware</strong>: fixtures and brackets in CAD, actuators on the dyno, and full robots through bring-up. Backed by an MS in Robotics with hands-on work in <strong>FEA, ROS2 autonomy, and robot learning</strong>.
   </p>
   <div class="hero-actions">
-    <a href="mailto:sjang041@ucr.edu" class="btn-primary">Get in Touch ↗</a>
-    <a href="https://github.com/Shubh131102" target="_blank" class="btn-outline">GitHub</a>
-    <a href="https://www.linkedin.com/in/shubham-jangle-43081b27a/" target="_blank" class="btn-outline">LinkedIn</a>
+    <a href="mailto:shubhamjangle13@gmail.com" class="btn-primary">Get in Touch ↗</a>
+    <a href="https://github.com/Shubh131102" target="_blank" rel="noopener" class="btn-outline">GitHub</a>
+    <a href="https://www.linkedin.com/in/shubham-jangle-43081b27a/" target="_blank" rel="noopener" class="btn-outline">LinkedIn</a>
   </div>
   <div class="hero-stats">
     <div class="stat">
-      <div class="stat-number">12</div>
-      <div class="stat-label">DOF Quadruped Built</div>
+      <div class="stat-number">Humanoid</div>
+      <div class="stat-label">Build &amp; Bring-Up</div>
+    </div>
+    <div class="stat">
+      <div class="stat-number">12-DOF</div>
+      <div class="stat-label">Quadruped Built From Scratch</div>
     </div>
     <div class="stat">
       <div class="stat-number">0.8mm</div>
-      <div class="stat-label">Sensor Alignment Accuracy</div>
-    </div>
-    <div class="stat">
-      <div class="stat-number">25%</div>
-      <div class="stat-label">FEA Stiffness Improvement</div>
+      <div class="stat-label">FEA-Validated Sensor Stability</div>
     </div>
     <div class="stat">
       <div class="stat-number">92%</div>
-      <div class="stat-label">Navigation Task Success</div>
+      <div class="stat-label">Learned-Policy Task Success</div>
     </div>
   </div>
 </div>
@@ -769,124 +795,38 @@
   </div>
   <div class="about-grid">
     <div class="about-text reveal">
-      <p>I'm a Robotics Engineer with an MS from the University of California, Riverside. What sets me apart is that I work across both sides of robotics — hardware and software — with equal depth in each.</p>
-      <p>On the <strong>mechanical side</strong>, I design and validate hardware for autonomous systems — sensor mounting systems, structural components, and fabricated assemblies using SolidWorks, ANSYS FEA, GD&T, and DFA. My work spans autonomous vehicles, legged robots, and bio-inspired underwater propulsion.</p>
-      <p>On the <strong>software side</strong>, I build full autonomous navigation stacks in ROS2 — SLAM-based mapping, CNN-based perception pipelines, and uncertainty-aware imitation learning validated across multiple environments with zero collision performance.</p>
-      <p>I understand how mechanical decisions affect software performance and vice versa. That systems-level thinking is what I bring to every project.</p>
+      <p>I'm a Robotics Build Engineer at <strong>Foundation</strong>, a humanoid robotics company in San Francisco. I work on the hardware end to end: designing fixtures, stands, and brackets in SolidWorks, building and dyno-testing planetary gear actuators, and bringing new humanoid robots up from subassembly to a full working system.</p>
+      <p>Before Foundation, I earned my <strong>MS in Robotics from UC Riverside</strong>. My work there spanned both sides of robotics: mechanical design and FEA for legged robots, autonomous vehicles, and underwater propulsion, and software work in ROS2 navigation, SLAM, perception, and uncertainty-aware imitation learning deployed on physical robots.</p>
+      <p>What I care about most is hardware that holds up on the robot, not just in CAD or simulation. I like owning a problem from the first sketch to the last failure fix: designing the part, building it, finding where it breaks, and making it better.</p>
     </div>
     <div class="about-info reveal">
       <div class="info-row">
-        <span class="info-label">Location</span>
-        <span class="info-value">Riverside, California</span>
+        <span class="info-label">Current</span>
+        <span class="info-value">Robotics Build Engineer, Foundation</span>
       </div>
       <div class="info-row">
-        <span class="info-label">Education</span>
+        <span class="info-label">Location</span>
+        <span class="info-value">San Francisco, California</span>
+      </div>
+      <div class="info-row">
+        <span class="info-label">Master's</span>
         <span class="info-value">MS Robotics, UC Riverside (GPA 3.7)</span>
       </div>
       <div class="info-row">
         <span class="info-label">Bachelor's</span>
-        <span class="info-value">BE Mechanical, PDEU (CGPA 8.0)</span>
+        <span class="info-value">BE Mechanical, PDEU</span>
       </div>
       <div class="info-row">
-        <span class="info-label">Status</span>
-        <span class="info-value" style="color: var(--green);">Actively seeking full-time roles</span>
-      </div>
-      <div class="info-row">
-        <span class="info-label">Visa</span>
-        <span class="info-value">F-1 OPT (April 2026, STEM eligible)</span>
+        <span class="info-label">Work Auth</span>
+        <span class="info-value">F-1 OPT, STEM extension eligible</span>
       </div>
       <div class="info-row">
         <span class="info-label">Email</span>
-        <span class="info-value"><a href="mailto:sjang041@ucr.edu">sjang041@ucr.edu</a></span>
+        <span class="info-value"><a href="mailto:shubhamjangle13@gmail.com">shubhamjangle13@gmail.com</a></span>
       </div>
       <div class="info-row">
         <span class="info-label">GitHub</span>
-        <span class="info-value"><a href="https://github.com/Shubh131102" target="_blank">Shubh131102</a></span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- SKILLS -->
-<div class="full-border"></div>
-<section id="skills">
-  <div class="section-header reveal">
-    <span class="section-num">02</span>
-    <h2>Skills</h2>
-    <div class="section-line"></div>
-  </div>
-  <div class="skills-grid reveal">
-    <div class="skill-group">
-      <div class="skill-group-title">Mechanical Design</div>
-      <div class="skill-tags">
-        <span class="tag">SolidWorks</span>
-        <span class="tag">CATIA</span>
-        <span class="tag">Fusion 360</span>
-        <span class="tag">AutoCAD</span>
-        <span class="tag">GD&T (ASME Y14.5)</span>
-        <span class="tag">DFM/DFA</span>
-        <span class="tag">Tolerance Analysis</span>
-      </div>
-    </div>
-    <div class="skill-group">
-      <div class="skill-group-title">Analysis & Simulation</div>
-      <div class="skill-tags">
-        <span class="tag">ANSYS FEA</span>
-        <span class="tag">Structural Analysis</span>
-        <span class="tag">Thermal Analysis</span>
-        <span class="tag">Vibration Analysis</span>
-        <span class="tag">CFD</span>
-        <span class="tag">MATLAB</span>
-        <span class="tag">Simulink</span>
-      </div>
-    </div>
-    <div class="skill-group">
-      <div class="skill-group-title">Robotics & Autonomy</div>
-      <div class="skill-tags">
-        <span class="tag">ROS2</span>
-        <span class="tag">SLAM</span>
-        <span class="tag">Nav2</span>
-        <span class="tag">Gazebo</span>
-        <span class="tag">Sensor Fusion</span>
-        <span class="tag">Path Planning</span>
-        <span class="tag">PID Control</span>
-        <span class="tag">MPC</span>
-      </div>
-    </div>
-    <div class="skill-group">
-      <div class="skill-group-title">AI & Perception</div>
-      <div class="skill-tags">
-        <span class="tag">PyTorch</span>
-        <span class="tag">Deep Learning</span>
-        <span class="tag">CNNs</span>
-        <span class="tag">Imitation Learning</span>
-        <span class="tag">Computer Vision</span>
-        <span class="tag">OpenCV</span>
-        <span class="tag">LiDAR</span>
-      </div>
-    </div>
-    <div class="skill-group">
-      <div class="skill-group-title">Programming</div>
-      <div class="skill-tags">
-        <span class="tag">Python</span>
-        <span class="tag">C++</span>
-        <span class="tag">MATLAB</span>
-        <span class="tag">Arduino C++</span>
-        <span class="tag">Git</span>
-        <span class="tag">Docker</span>
-        <span class="tag">Linux</span>
-      </div>
-    </div>
-    <div class="skill-group">
-      <div class="skill-group-title">Manufacturing & Hardware</div>
-      <div class="skill-tags">
-        <span class="tag">3D Printing (FDM)</span>
-        <span class="tag">Laser Cutting</span>
-        <span class="tag">CNC Machining</span>
-        <span class="tag">Arduino</span>
-        <span class="tag">Raspberry Pi</span>
-        <span class="tag">ESP32</span>
-        <span class="tag">Welding</span>
+        <span class="info-value"><a href="https://github.com/Shubh131102" target="_blank" rel="noopener">Shubh131102</a></span>
       </div>
     </div>
   </div>
@@ -896,25 +836,44 @@
 <div class="full-border"></div>
 <section id="experience">
   <div class="section-header reveal">
-    <span class="section-num">03</span>
+    <span class="section-num">02</span>
     <h2>Experience</h2>
     <div class="section-line"></div>
   </div>
   <div class="exp-list">
 
+    <div class="exp-item current reveal">
+      <div class="exp-meta">
+        <span class="exp-period">Jun 2026 – Present</span>
+        <span class="exp-org">Foundation</span>
+        <span class="exp-type">Full-time</span>
+      </div>
+      <div class="exp-content">
+        <div class="exp-title">Robotics Build Engineer</div>
+        <p class="exp-sub">Building and integrating the Phantom humanoid robot, from actuator builds to full-system bring-up, as the program moves from prototype to production.</p>
+        <ul class="exp-bullets">
+          <li>Designed <strong>test fixtures, robot stands, and a compute bracket</strong> in SolidWorks, from load and interface requirements through 2D drawings, fabrication, and fit checks on the robot</li>
+          <li>Built, calibrated, and <strong>dynamometer-tested planetary gear actuators</strong> for torque, efficiency, and thermal behavior; wrote the assembly, calibration, and test documentation used for actuator builds</li>
+          <li>Led <strong>robot bring-up</strong> on new humanoid builds, from forearm subassembly testing to actuator installation and full-system integration</li>
+          <li>Fabricated <strong>wire harnesses and connector assemblies</strong> for robot subsystems and resolved integration failures on hardware</li>
+          <li>Developed in-house <strong>data-capture gloves</strong>, built MuJoCo simulations of actuators and robot hands, and trained a <strong>sit-to-stand policy</strong> for the humanoid</li>
+        </ul>
+      </div>
+    </div>
+
     <div class="exp-item reveal">
       <div class="exp-meta">
-        <span class="exp-period">Jul – Sep 2025</span>
+        <span class="exp-period">Jun – Sep 2025</span>
         <span class="exp-org">Ahmedabad University</span>
         <span class="exp-type">Internship</span>
       </div>
       <div class="exp-content">
-        <div class="exp-title">Autonomous Systems Intern</div>
+        <div class="exp-title">Robotics Engineering Intern</div>
         <ul class="exp-bullets">
           <li>Designed LiDAR and camera sensor mounts in SolidWorks; ANSYS FEA under dynamic vibration loading validated positional stability within <strong>0.8mm</strong></li>
-          <li>Applied GD&T tolerancing on critical datum features for sub-millimeter sensor alignment per perception team calibration requirements</li>
-          <li>Developed ROS2 autonomous navigation with CNN-based traffic detection achieving <strong>85%</strong> rule compliance at <strong>20Hz</strong> and <strong>92%</strong> accuracy</li>
-          <li>Deployed sim-to-real transfer from Gazebo to physical vehicle with multi-sensor fusion</li>
+          <li>Applied GD&amp;T on critical datum features for sub-millimeter sensor alignment; fabricated parts via laser cutting with DFA for cable routing and serviceability</li>
+          <li>Developed a ROS2 navigation stack with CNN-based traffic detection, reaching <strong>85%</strong> rule compliance and <strong>92%</strong> perception accuracy at <strong>20Hz</strong></li>
+          <li>Executed sim-to-real transfer from Gazebo to the physical vehicle and built a Python telemetry dashboard for live monitoring</li>
         </ul>
       </div>
     </div>
@@ -923,14 +882,14 @@
       <div class="exp-meta">
         <span class="exp-period">Jan – Mar 2025</span>
         <span class="exp-org">UC Riverside</span>
-        <span class="exp-type">Research Intern</span>
+        <span class="exp-type">Research</span>
       </div>
       <div class="exp-content">
         <div class="exp-title">Robotics Research Intern</div>
         <ul class="exp-bullets">
-          <li>Designed brackets, base mount, and end effector for robotic manipulator; validated structural integrity via ANSYS FEA — <strong>1mm</strong> positional accuracy</li>
-          <li>Implemented SLAM-based autonomous navigation on TurtleBot3 using ROS2, SLAM Toolbox, and Nav2 with A* global planning</li>
-          <li>Tuned Nav2 frontier exploration parameters achieving <strong>15%</strong> map accuracy improvement at <strong>10Hz</strong> real-time performance</li>
+          <li>Designed brackets, base mount, and end effector for a robotic manipulator; validated with ANSYS FEA and a test fixture showing <strong>1mm</strong> positional repeatability</li>
+          <li>Implemented SLAM-based exploration on TurtleBot3 with ROS2, SLAM Toolbox, and Nav2 (A* global planning, DWB local control)</li>
+          <li>Tuned frontier exploration for a <strong>15%</strong> map accuracy improvement at <strong>10Hz</strong></li>
         </ul>
       </div>
     </div>
@@ -942,11 +901,26 @@
         <span class="exp-type">Internship</span>
       </div>
       <div class="exp-content">
-        <div class="exp-title">Robotics Engineering Intern</div>
+        <div class="exp-title">Mechatronics Engineering Intern</div>
         <ul class="exp-bullets">
-          <li>Designed and fabricated chassis, DC motor mounts, and spring launcher mechanism achieving <strong>30-meter</strong> projectile range at 45°</li>
-          <li>Developed Webots simulation with multi-sensor fusion (IR/ultrasonic/temperature) achieving <strong>90%</strong> fire detection accuracy</li>
-          <li>Programmed Arduino firmware in C++ with flame sensor threshold logic, WiFi communication, and DC motor control</li>
+          <li>Designed and fabricated a firefighting robot's chassis, motor mounts, and a spring launcher reaching <strong>30m</strong> range at 45°</li>
+          <li>Diagnosed DC motor thermal failures and engineered a cooling fix that cut operating temperature by <strong>20°C</strong></li>
+          <li>Built a Webots simulation with IR, ultrasonic, and temperature sensor fusion reaching <strong>90%</strong> fire detection accuracy; wrote Arduino C++ firmware</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="exp-item reveal">
+      <div class="exp-meta">
+        <span class="exp-period">May – Jun 2023</span>
+        <span class="exp-org">ONGC</span>
+        <span class="exp-type">Internship</span>
+      </div>
+      <div class="exp-content">
+        <div class="exp-title">Mechanical Engineering Intern</div>
+        <ul class="exp-bullets">
+          <li>Ran thermal and fluid flow analyses on shell-and-tube heat exchangers, improving efficiency by <strong>12%</strong> through flow path changes</li>
+          <li>Built a maintenance model from historical failure data for drilling equipment, reducing downtime by <strong>20%</strong></li>
         </ul>
       </div>
     </div>
@@ -958,46 +932,25 @@
 <div class="full-border"></div>
 <section id="projects">
   <div class="section-header reveal">
-    <span class="section-num">04</span>
+    <span class="section-num">03</span>
     <h2>Projects</h2>
     <div class="section-line"></div>
   </div>
   <div class="projects-grid">
 
-    <a href="https://github.com/Shubh131102/Uncertainty-Aware-Imitation-Learning-for-Indoor-Navigation" target="_blank" class="project-card reveal">
-      <div class="project-num">01 — Software</div>
-      <div class="project-title">Uncertainty-Aware Imitation Learning</div>
-      <p class="project-desc">Autonomous indoor navigation combining Monte Carlo Dropout with DAgger imitation learning for uncertainty-aware speed control. Zero collisions across 3 environments.</p>
-      <div class="project-metrics">
-        <span class="metric">43% uncertainty reduction</span>
-        <span class="metric">5× faster convergence</span>
-        <span class="metric">92% task success</span>
-      </div>
-      <div class="project-tags">
-        <span class="tag">ROS2</span>
-        <span class="tag">PyTorch</span>
-        <span class="tag">Conv1D CNN</span>
-        <span class="tag">LiDAR</span>
-        <span class="tag">Nav2</span>
-      </div>
-      <div class="project-footer">
-        <span class="project-link">View on GitHub <span class="project-arrow">↗</span></span>
-      </div>
-    </a>
-
-    <a href="https://github.com/Shubh131102/12-DOF-Quadruped-Spider-Robot" target="_blank" class="project-card reveal">
-      <div class="project-num">02 — Mechanical + Software</div>
+    <a href="https://github.com/Shubh131102/12-DOF-Quadruped-Spider-Robot" target="_blank" rel="noopener" class="project-card reveal">
+      <div class="project-num">01 — Mechanical + Software</div>
       <div class="project-title">12-DOF Quadruped Robot</div>
-      <p class="project-desc">Designed, fabricated, and debugged a 12-DOF quadruped from scratch. FEA-optimized leg structures, servo gait control, thermal management, and voltage sag debugging.</p>
+      <p class="project-desc">Designed, built, and debugged a quadruped from scratch. Sized 12 servos from joint torque requirements, used FEA to strip low-stress material from the legs, added a hip adduction mechanism for balance, and fixed voltage sag, overheating, and cable fatigue until it walked reliably on uneven terrain.</p>
       <div class="project-metrics">
-        <span class="metric">25% stiffness improvement</span>
-        <span class="metric">12 servo actuators</span>
+        <span class="metric">25% stiffness-to-weight</span>
+        <span class="metric">12 actuators</span>
         <span class="metric">Uneven terrain</span>
       </div>
       <div class="project-tags">
         <span class="tag">SolidWorks</span>
         <span class="tag">ANSYS FEA</span>
-        <span class="tag">Arduino</span>
+        <span class="tag">Arduino C++</span>
         <span class="tag">3D Printing</span>
       </div>
       <div class="project-footer">
@@ -1005,12 +958,32 @@
       </div>
     </a>
 
-    <a href="https://github.com/Shubh131102/Bfmc-Autonomous-Vehicle" target="_blank" class="project-card reveal">
+    <a href="https://github.com/Shubh131102/Uncertainty-Aware-Imitation-Learning-for-Indoor-Navigation" target="_blank" rel="noopener" class="project-card reveal">
+      <div class="project-num">02 — MS Thesis</div>
+      <div class="project-title">Uncertainty-Aware Imitation Learning</div>
+      <p class="project-desc">Combined DAgger imitation learning with Monte Carlo Dropout so the robot knows when not to trust its own policy, then slows down. Deployed the full PyTorch and ROS2 stack on physical robots across three indoor environments with zero collisions.</p>
+      <div class="project-metrics">
+        <span class="metric">43% less uncertainty</span>
+        <span class="metric">5× faster convergence</span>
+        <span class="metric">92% task success</span>
+      </div>
+      <div class="project-tags">
+        <span class="tag">ROS2</span>
+        <span class="tag">PyTorch</span>
+        <span class="tag">DAgger</span>
+        <span class="tag">LiDAR</span>
+      </div>
+      <div class="project-footer">
+        <span class="project-link">View on GitHub <span class="project-arrow">↗</span></span>
+      </div>
+    </a>
+
+    <a href="https://github.com/Shubh131102/Bfmc-Autonomous-Vehicle" target="_blank" rel="noopener" class="project-card reveal">
       <div class="project-num">03 — Mechanical + Software</div>
       <div class="project-title">Autonomous Vehicle Platform</div>
-      <p class="project-desc">End-to-end autonomous vehicle spanning sensor mount fabrication to ROS2 navigation stack. FEA-validated mounts with 0.8mm positional stability and full traffic rule compliance.</p>
+      <p class="project-desc">End-to-end autonomous vehicle for the Bosch Future Mobility Challenge, from FEA-validated sensor mounts to a ROS2 navigation stack with camera and LiDAR perception, validated in the real world after sim-to-real transfer.</p>
       <div class="project-metrics">
-        <span class="metric">0.8mm alignment</span>
+        <span class="metric">0.8mm stability</span>
         <span class="metric">85% rule compliance</span>
         <span class="metric">20Hz perception</span>
       </div>
@@ -1019,17 +992,17 @@
         <span class="tag">SolidWorks</span>
         <span class="tag">ANSYS</span>
         <span class="tag">CNN</span>
-        <span class="tag">GD&T</span>
+        <span class="tag">GD&amp;T</span>
       </div>
       <div class="project-footer">
         <span class="project-link">View on GitHub <span class="project-arrow">↗</span></span>
       </div>
     </a>
 
-    <a href="https://github.com/Shubh131102/HydroMech-Fin-Propelled-AUV" target="_blank" class="project-card reveal">
+    <a href="https://github.com/Shubh131102/HydroMech-Fin-Propelled-AUV" target="_blank" rel="noopener" class="project-card reveal">
       <div class="project-num">04 — Mechanical</div>
       <div class="project-title">HydroMech: Bio-Inspired AUV</div>
-      <p class="project-desc">18-fin undulatory propulsion mechanism with crankshaft, transmission gear, and crawling joints. CFD-optimized hull geometry. Waterproofing via rotary lip seals. Pool tested.</p>
+      <p class="project-desc">An 18-fin undulatory propulsion mechanism driven by a crankshaft and gear train. Hull geometry refined with CFD, mounts optimized with ANSYS stress and deflection analysis, and electronics sealed with rotary lip seals. Forward propulsion validated in the pool.</p>
       <div class="project-metrics">
         <span class="metric">18-fin mechanism</span>
         <span class="metric">~3Hz oscillation</span>
@@ -1046,20 +1019,18 @@
       </div>
     </a>
 
-    <a href="https://github.com/Shubh131102/Hybrid-Astar-Slam-Navigation" target="_blank" class="project-card reveal">
+    <a href="https://github.com/Shubh131102/Hybrid-Astar-Slam-Navigation" target="_blank" rel="noopener" class="project-card reveal">
       <div class="project-num">05 — Software</div>
       <div class="project-title">SLAM Navigation Stack</div>
-      <p class="project-desc">Full SLAM and autonomous navigation on TurtleBot3 in Gazebo. Frontier-based exploration with Nav2 parameter tuning for improved mapping accuracy and real-time performance.</p>
+      <p class="project-desc">Autonomous exploration of unknown indoor spaces on TurtleBot3: SLAM Toolbox for mapping, Nav2 with A* and DWB for planning, and tuned frontier exploration for better maps in real time.</p>
       <div class="project-metrics">
         <span class="metric">15% map accuracy</span>
         <span class="metric">10Hz real-time</span>
-        <span class="metric">10m trajectories</span>
       </div>
       <div class="project-tags">
         <span class="tag">ROS2</span>
         <span class="tag">SLAM Toolbox</span>
         <span class="tag">Nav2</span>
-        <span class="tag">A*</span>
         <span class="tag">LiDAR</span>
       </div>
       <div class="project-footer">
@@ -1067,26 +1038,124 @@
       </div>
     </a>
 
-    <a href="https://github.com/Shubh131102/fire-fighting-mobile-robot" target="_blank" class="project-card reveal">
+    <a href="https://github.com/Shubh131102/fire-fighting-mobile-robot" target="_blank" rel="noopener" class="project-card reveal">
       <div class="project-num">06 — Mechanical + Software</div>
       <div class="project-title">Firefighting Mobile Robot</div>
-      <p class="project-desc">Autonomous firefighting robot with spring launcher mechanism and multi-sensor fusion. SolidWorks-designed chassis, Webots simulation, and Arduino C++ firmware with WiFi control.</p>
+      <p class="project-desc">Autonomous robot that finds a fire and launches an extinguisher ball at it. SolidWorks chassis and spring launcher, multi-sensor fusion in Webots, and Arduino C++ firmware with WiFi override.</p>
       <div class="project-metrics">
-        <span class="metric">90% detection accuracy</span>
+        <span class="metric">90% detection</span>
         <span class="metric">30m launch range</span>
-        <span class="metric">45° optimal angle</span>
       </div>
       <div class="project-tags">
         <span class="tag">SolidWorks</span>
         <span class="tag">Webots</span>
-        <span class="tag">Arduino</span>
-        <span class="tag">C++</span>
+        <span class="tag">Arduino C++</span>
       </div>
       <div class="project-footer">
         <span class="project-link">View on GitHub <span class="project-arrow">↗</span></span>
       </div>
     </a>
 
+    <a href="https://github.com/Shubh131102" target="_blank" rel="noopener" class="project-card reveal">
+      <div class="project-num">07 — Controls</div>
+      <div class="project-title">Fault-Tolerant Propulsion Control</div>
+      <p class="project-desc">Compared PID, MPC, LQR, and sliding mode control for autonomous vehicle propulsion, with residual-based fault detection that reconfigures the controller on the fly to stay stable through actuator and sensor faults.</p>
+      <div class="project-metrics">
+        <span class="metric">40% faster disturbance recovery</span>
+        <span class="metric">Automatic reconfiguration</span>
+      </div>
+      <div class="project-tags">
+        <span class="tag">MATLAB</span>
+        <span class="tag">Simulink</span>
+        <span class="tag">Python</span>
+        <span class="tag">MPC</span>
+      </div>
+      <div class="project-footer">
+        <span class="project-link">View on GitHub <span class="project-arrow">↗</span></span>
+      </div>
+    </a>
+
+  </div>
+</section>
+
+<!-- SKILLS -->
+<div class="full-border"></div>
+<section id="skills">
+  <div class="section-header reveal">
+    <span class="section-num">04</span>
+    <h2>Skills</h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="skills-grid reveal">
+    <div class="skill-group">
+      <div class="skill-group-title">Mechanical Design</div>
+      <div class="skill-tags">
+        <span class="tag">SolidWorks</span>
+        <span class="tag">CATIA</span>
+        <span class="tag">Fusion 360</span>
+        <span class="tag">GD&amp;T (ASME Y14.5)</span>
+        <span class="tag">Tolerance Analysis</span>
+        <span class="tag">DFM/DFA</span>
+        <span class="tag">Fixture &amp; Bracket Design</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-title">Build, Test &amp; Integration</div>
+      <div class="skill-tags">
+        <span class="tag">Actuator Assembly</span>
+        <span class="tag">Dynamometer Testing</span>
+        <span class="tag">Calibration</span>
+        <span class="tag">Robot Bring-Up</span>
+        <span class="tag">Wire Harnesses</span>
+        <span class="tag">Root-Cause Analysis</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-title">Analysis &amp; Simulation</div>
+      <div class="skill-tags">
+        <span class="tag">ANSYS FEA</span>
+        <span class="tag">Vibration &amp; Thermal</span>
+        <span class="tag">CFD</span>
+        <span class="tag">MuJoCo</span>
+        <span class="tag">MATLAB</span>
+        <span class="tag">Simulink</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-title">Robotics &amp; Autonomy</div>
+      <div class="skill-tags">
+        <span class="tag">ROS2</span>
+        <span class="tag">SLAM</span>
+        <span class="tag">Nav2</span>
+        <span class="tag">Gazebo</span>
+        <span class="tag">Sensor Fusion</span>
+        <span class="tag">PID / MPC</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-title">AI &amp; Perception</div>
+      <div class="skill-tags">
+        <span class="tag">PyTorch</span>
+        <span class="tag">Imitation Learning</span>
+        <span class="tag">Policy Training</span>
+        <span class="tag">CNNs</span>
+        <span class="tag">OpenCV</span>
+        <span class="tag">LiDAR</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-title">Programming &amp; Fabrication</div>
+      <div class="skill-tags">
+        <span class="tag">Python</span>
+        <span class="tag">C++</span>
+        <span class="tag">Git</span>
+        <span class="tag">Linux</span>
+        <span class="tag">3D Printing</span>
+        <span class="tag">CNC Machining</span>
+        <span class="tag">Laser Cutting</span>
+        <span class="tag">Sheet Metal</span>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -1100,18 +1169,18 @@
   </div>
   <div class="contact-grid">
     <div class="contact-text reveal">
-      <h3>Let's work together.</h3>
-      <p>I'm currently seeking full-time roles in robotics — mechanical design, robotics software, or integrated systems engineering. Open to roles across the US on F-1 OPT with STEM extension eligibility.</p>
+      <h3>Let's talk robots.</h3>
+      <p>I'm always happy to connect with people building robotics hardware, whether it's actuators, mechanisms, humanoids, or the systems that bring them to life.</p>
       <div class="contact-links">
-        <a href="mailto:sjang041@ucr.edu" class="contact-link">
+        <a href="mailto:shubhamjangle13@gmail.com" class="contact-link">
           <span class="contact-link-type">Email</span>
-          <span class="contact-link-label">sjang041@ucr.edu</span>
+          <span class="contact-link-label">shubhamjangle13@gmail.com</span>
         </a>
-        <a href="https://www.linkedin.com/in/shubham-jangle-43081b27a/" target="_blank" class="contact-link">
+        <a href="https://www.linkedin.com/in/shubham-jangle-43081b27a/" target="_blank" rel="noopener" class="contact-link">
           <span class="contact-link-type">LinkedIn</span>
           <span class="contact-link-label">shubham-jangle-43081b27a</span>
         </a>
-        <a href="https://github.com/Shubh131102" target="_blank" class="contact-link">
+        <a href="https://github.com/Shubh131102" target="_blank" rel="noopener" class="contact-link">
           <span class="contact-link-type">GitHub</span>
           <span class="contact-link-label">Shubh131102</span>
         </a>
@@ -1122,29 +1191,25 @@
       </div>
     </div>
     <div class="contact-avail reveal">
-      <div class="avail-title">Availability</div>
+      <div class="avail-title">At a Glance</div>
       <div class="avail-item">
         <div class="avail-dot"></div>
-        Available for full-time roles immediately
+        Based in San Francisco, California
       </div>
       <div class="avail-item">
         <div class="avail-dot"></div>
-        F-1 OPT — April 2026
+        Humanoid hardware: design, build, test, bring-up
       </div>
       <div class="avail-item">
         <div class="avail-dot"></div>
-        STEM OPT extension eligible (3 years)
+        F-1 OPT, STEM extension eligible
       </div>
       <div class="avail-item">
         <div class="avail-dot"></div>
-        Open to relocation anywhere in US
-      </div>
-      <div class="avail-item">
-        <div class="avail-dot"></div>
-        Targeting robotics mechanical and software roles
+        Open to relocation within the US
       </div>
       <div style="margin-top: 1.5rem;">
-        <a href="mailto:sjang041@ucr.edu" class="btn-primary" style="width: 100%; justify-content: center; display: flex;">Send a Message ↗</a>
+        <a href="mailto:shubhamjangle13@gmail.com" class="btn-primary" style="width: 100%; justify-content: center; display: flex;">Send a Message ↗</a>
       </div>
     </div>
   </div>
@@ -1154,24 +1219,21 @@
 <footer>
   <span class="footer-copy">© 2026 Shubham Jangle — Robotics Engineer</span>
   <div class="footer-links">
-    <a href="https://github.com/Shubh131102" target="_blank">GitHub</a>
-    <a href="https://www.linkedin.com/in/shubham-jangle-43081b27a/" target="_blank">LinkedIn</a>
-    <a href="mailto:sjang041@ucr.edu">Email</a>
+    <a href="https://github.com/Shubh131102" target="_blank" rel="noopener">GitHub</a>
+    <a href="https://www.linkedin.com/in/shubham-jangle-43081b27a/" target="_blank" rel="noopener">LinkedIn</a>
+    <a href="mailto:shubhamjangle13@gmail.com">Email</a>
   </div>
 </footer>
 
 <script>
 const observer = new IntersectionObserver((entries) => {
-  entries.forEach((entry, i) => {
+  entries.forEach((entry) => {
     if (entry.isIntersecting) {
-      setTimeout(() => {
-        entry.target.classList.add('visible');
-      }, 100);
+      setTimeout(() => entry.target.classList.add('visible'), 100);
       observer.unobserve(entry.target);
     }
   });
 }, { threshold: 0.1 });
-
 document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 </script>
 
