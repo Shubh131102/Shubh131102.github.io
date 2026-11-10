@@ -3,211 +3,251 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Shubham Jangle, Humanoid Robotics Engineer</title>
-<meta name="description" content="Shubham Jangle is a humanoid robotics engineer who builds, tests, and brings up humanoid robots at Foundation. MS Robotics, UC Riverside.">
-<meta property="og:title" content="Shubham Jangle, Humanoid Robotics Engineer">
+<title>Shubham Jangle, Robotics Engineer</title>
+<meta name="description" content="Shubham Jangle is a robotics engineer who builds, tests, and brings up humanoid robots at Foundation. MS Robotics, UC Riverside.">
+<meta property="og:title" content="Shubham Jangle, Robotics Engineer">
 <meta property="og:description" content="I build humanoid robots: actuators on the dyno, limbs and hands on the bench, and full robots through bring-up.">
 <meta property="og:image" content="assets/img/quadruped.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
+  /* Layout idea: an engineering drawing sheet. Drafting grid, title block, item balloons,
+     redline orange for anything live or selected. Wide two-column rows, hairline rules. */
   :root {
-    --paper: #ECEEEA;
-    --paper-2: #E2E5E0;
-    --ink: #1B2221;
-    --steel: #5E6A70;
-    --line: #C9CEC8;
-    --teal: #0E5A5F;
-    --tape: #F2C230;
-    --white: #F8F9F6;
-    --measure: 68ch;
+    --sheet: #EEF1F4;
+    --sheet-2: #E3E8ED;
+    --ink: #14202E;
+    --dim: #526275;
+    --line: #C2CBD5;
+    --grid: rgba(20, 32, 46, 0.055);
+    --redline: #C8420C;
+    --inv-bg: #14202E;
+    --inv-ink: #E6ECF3;
+    --inv-dim: #9FB0C3;
+    --display: 'Barlow Condensed', 'Arial Narrow', 'Helvetica Neue', sans-serif;
+    --body: 'IBM Plex Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+    --mono: 'IBM Plex Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+    --measure: 64ch;
+    color-scheme: light;
   }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --sheet: #0F1B2B; --sheet-2: #16263A; --ink: #E3EAF2; --dim: #96A8BC; --line: #2B3E56;
+      --grid: rgba(227, 234, 242, 0.05); --redline: #FF7F45;
+      --inv-bg: #E3EAF2; --inv-ink: #0F1B2B; --inv-dim: #44566B;
+      color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --sheet: #0F1B2B; --sheet-2: #16263A; --ink: #E3EAF2; --dim: #96A8BC; --line: #2B3E56;
+    --grid: rgba(227, 234, 242, 0.05); --redline: #FF7F45;
+    --inv-bg: #E3EAF2; --inv-ink: #0F1B2B; --inv-dim: #44566B;
+    color-scheme: dark;
+  }
+
   *, *::before, *::after { box-sizing: border-box; }
-  html { scroll-behavior: smooth; }
+  html { scroll-behavior: smooth; scroll-padding-top: 76px; }
   @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
   body {
-    margin: 0;
-    background: var(--paper);
-    color: var(--ink);
-    font-family: 'Archivo', system-ui, sans-serif;
-    font-size: 17px;
-    line-height: 1.6;
-    font-variation-settings: 'wdth' 100;
+    margin: 0; background: var(--sheet); color: var(--ink);
+    font-family: var(--body); font-size: 17px; line-height: 1.6;
     -webkit-font-smoothing: antialiased;
   }
-  img, video { display: block; max-width: 100%; }
-  a { color: var(--teal); text-underline-offset: 3px; text-decoration-thickness: 1px; }
-  a:hover { text-decoration-thickness: 2px; }
-  :focus-visible { outline: 3px solid var(--teal); outline-offset: 3px; }
-  .wrap { max-width: 1180px; margin: 0 auto; padding: 0 32px; }
+  img, video, canvas, svg { display: block; max-width: 100%; }
+  a { color: inherit; text-underline-offset: 3px; text-decoration-thickness: 1px; }
+  a:hover { color: var(--redline); }
+  :focus-visible { outline: 2px solid var(--redline); outline-offset: 3px; }
+  p { margin: 0 0 14px; max-width: var(--measure); }
+  .wrap { max-width: 1200px; margin: 0 auto; padding: 0 32px; }
+  .mono { font-family: var(--mono); font-size: 12.5px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--dim); }
 
   /* Header */
-  .site-header { border-bottom: 1px solid var(--line); }
-  .site-header .wrap { display: flex; align-items: center; justify-content: space-between; gap: 24px; height: 64px; }
-  .mark { font-weight: 700; font-stretch: 125%; color: var(--ink); text-decoration: none; letter-spacing: -0.01em; }
-  .nav { display: flex; gap: 28px; }
-  .nav a { color: var(--ink); text-decoration: none; font-size: 15px; }
-  .nav a:hover { text-decoration: underline; }
+  .site-header { position: sticky; top: 0; z-index: 10; background: var(--sheet); border-bottom: 1px solid var(--line); }
+  .site-header .wrap { display: flex; align-items: center; justify-content: space-between; gap: 24px; height: 60px; }
+  .mark { font-family: var(--display); font-weight: 700; font-size: 22px; letter-spacing: 0.02em; text-transform: uppercase; text-decoration: none; }
+  .nav { display: flex; gap: 26px; }
+  .nav a { text-decoration: none; font-size: 15px; }
 
   /* Hero */
-  .hero { padding: 72px 0 0; }
-  .hero h1 {
-    margin: 0;
-    font-size: clamp(3rem, 9.5vw, 8.4rem);
-    line-height: 0.92;
-    font-weight: 800;
-    font-stretch: 125%;
-    letter-spacing: -0.03em;
+  .hero {
+    background-image:
+      linear-gradient(var(--grid) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+    background-size: 24px 24px;
+    border-bottom: 1px solid var(--line);
   }
-  .hero-row { display: grid; grid-template-columns: 1.15fr 1fr; gap: 48px; margin-top: 36px; align-items: end; }
-  .lede { font-size: clamp(1.25rem, 2vw, 1.55rem); line-height: 1.4; margin: 0; max-width: 30ch; }
-  .lede mark { background: linear-gradient(transparent 58%, var(--tape) 58%); color: inherit; padding: 0 2px; }
-  .hero-meta { margin: 0; font-size: 16px; color: var(--steel); max-width: 44ch; }
-  .hero-meta p { margin: 0 0 14px; }
-  .hero-links { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 8px; }
+  .hero-grid { display: grid; grid-template-columns: 1.15fr 1fr; gap: 48px; align-items: center; padding: 56px 0 44px; }
+  h1 {
+    margin: 10px 0 0; font-family: var(--display); font-weight: 700; text-transform: uppercase;
+    font-size: clamp(3.6rem, 9vw, 7.6rem); line-height: 0.88; letter-spacing: -0.005em;
+  }
+  .lede { font-size: clamp(1.2rem, 1.9vw, 1.45rem); line-height: 1.42; margin: 26px 0 14px; max-width: 31ch; }
+  .lede em { font-style: normal; box-shadow: inset 0 -0.42em 0 color-mix(in srgb, var(--redline) 32%, transparent); }
+  .hero-sub { color: var(--dim); font-size: 16px; max-width: 46ch; }
+  .links { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 22px; }
   .btn {
-    display: inline-block; padding: 12px 20px; font-size: 15px; font-weight: 600;
-    text-decoration: none; border: 1.5px solid var(--ink); color: var(--ink); background: transparent;
+    display: inline-block; padding: 11px 20px; font-size: 15px; font-weight: 600; text-decoration: none;
+    border: 1.5px solid var(--ink); color: var(--ink); background: var(--sheet);
   }
-  .btn:hover { background: var(--ink); color: var(--paper); }
-  .btn.primary { background: var(--ink); color: var(--paper); }
-  .btn.primary:hover { background: var(--teal); border-color: var(--teal); }
+  .btn:hover { background: var(--ink); color: var(--sheet); }
+  .btn.primary { background: var(--redline); border-color: var(--redline); color: #fff; }
+  .btn.primary:hover { background: var(--ink); border-color: var(--ink); color: var(--sheet); }
 
-  .strip {
-    display: grid;
-    grid-template-columns: 1.1fr 1.4fr 1fr 1.3fr;
-    gap: 8px;
-    margin-top: 56px;
-    height: clamp(220px, 30vw, 360px);
-  }
-  .strip figure { margin: 0; position: relative; overflow: hidden; background: var(--paper-2); }
-  .strip img, .strip video { width: 100%; height: 100%; object-fit: cover; }
-  .strip figcaption {
-    position: absolute; left: 0; bottom: 0; padding: 6px 10px;
-    background: var(--ink); color: var(--paper); font-size: 13px; line-height: 1.3;
-  }
+  .gearbox { margin: 0; }
+  .gearbox canvas { width: 100%; max-width: 460px; height: auto; margin: 0 auto; }
+  .gearbox figcaption { max-width: 460px; margin: 10px auto 0; font-size: 14px; color: var(--dim); text-align: center; }
+
+  /* Title block */
+  .titleblock { display: grid; grid-template-columns: 1.1fr 1.3fr 1.3fr 1.1fr 1.5fr 0.7fr; border: 1.5px solid var(--ink); border-bottom: 0; background: var(--sheet); }
+  .titleblock div { padding: 9px 14px 11px; border-right: 1px solid var(--ink); min-width: 0; }
+  .titleblock div:last-child { border-right: 0; }
+  .titleblock b { display: block; font-weight: 600; font-size: 15.5px; line-height: 1.3; }
 
   /* Sections */
-  section { padding: 96px 0 0; }
-  h2 {
-    font-size: clamp(2rem, 4vw, 3rem);
-    line-height: 1.05;
-    font-weight: 750;
-    font-stretch: 118%;
-    letter-spacing: -0.02em;
-    margin: 0 0 12px;
-  }
-  .section-intro { color: var(--steel); margin: 0 0 40px; max-width: var(--measure); }
-  h3 { font-size: 1.45rem; line-height: 1.2; font-weight: 700; font-variation-settings: 'wdth' 110; margin: 0 0 6px; letter-spacing: -0.01em; }
-  p { max-width: var(--measure); }
+  section { padding: 92px 0 0; }
+  h2 { font-family: var(--display); font-weight: 700; text-transform: uppercase; font-size: clamp(2.3rem, 4.6vw, 3.5rem); line-height: 0.98; margin: 0 0 14px; text-wrap: balance; }
+  .intro { color: var(--dim); margin: 0 0 36px; }
+  h3 { font-family: var(--display); font-weight: 600; font-size: 1.85rem; line-height: 1.05; margin: 0 0 8px; text-wrap: balance; }
 
-  /* Now / Foundation */
-  .now { display: grid; grid-template-columns: 1fr 1.25fr; gap: 56px; border-top: 2px solid var(--ink); padding-top: 28px; }
-  .now .role { font-size: 1.1rem; margin: 0 0 4px; font-weight: 600; }
-  .now .when { color: var(--steel); margin: 0 0 18px; }
-  .areas { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line); }
-  .areas li { display: grid; grid-template-columns: 11rem 1fr; gap: 20px; padding: 16px 0; border-bottom: 1px solid var(--line); }
-  .areas strong { font-weight: 650; }
-  .areas span { color: #3a4544; }
-
-
-  .title {
-    margin: 14px 0 0; font-size: clamp(1.4rem, 3.2vw, 2.4rem); font-weight: 500;
-    font-stretch: 112%; color: var(--teal); letter-spacing: -0.01em;
+  /* Stack figure */
+  .stack { display: grid; grid-template-columns: minmax(260px, 380px) 1fr; gap: 56px; border-top: 2px solid var(--ink); padding-top: 28px; align-items: start; }
+  .robot { width: 100%; height: auto; }
+  .robot .tube { stroke: var(--ink); stroke-width: 15; stroke-linecap: round; fill: none; }
+  .robot .core { stroke: var(--sheet); stroke-width: 11.5; stroke-linecap: round; fill: none; }
+  .robot .shell { fill: var(--sheet); stroke: var(--ink); stroke-width: 1.8; }
+  .robot .joint { fill: var(--sheet); stroke: var(--ink); stroke-width: 1.8; }
+  .robot .stand { stroke: var(--dim); stroke-width: 5; fill: none; stroke-linecap: square; }
+  .robot .thin { stroke: var(--dim); stroke-width: 1.2; fill: none; }
+  .robot .leader { stroke: var(--ink); stroke-width: 1; }
+  .balloon { cursor: pointer; }
+  .balloon circle { fill: var(--sheet); stroke: var(--ink); stroke-width: 1.5; }
+  .balloon text { font-family: var(--mono); font-size: 13px; fill: var(--ink); text-anchor: middle; dominant-baseline: central; }
+  .balloon[aria-pressed="true"] circle { fill: var(--redline); stroke: var(--redline); }
+  .balloon[aria-pressed="true"] text { fill: #fff; }
+  .balloon:hover circle { stroke: var(--redline); stroke-width: 2.5; }
+  .hot { fill: var(--redline); opacity: 0; }
+  .hot.on { opacity: 0.9; }
+  .stack-tabs { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 24px; }
+  .tab {
+    font: inherit; font-size: 15px; font-weight: 500; cursor: pointer; padding: 8px 14px 8px 8px;
+    display: inline-flex; align-items: center; gap: 9px;
+    background: var(--sheet); color: var(--ink); border: 1.5px solid var(--line);
   }
-  .stack { border-top: 2px solid var(--ink); }
-  .stack-head, .stack-row { display: grid; grid-template-columns: 13rem 1fr 1fr; gap: 32px; }
-  .stack-head { padding: 12px 0; border-bottom: 1px solid var(--line); color: var(--steel); font-size: 15px; }
-  .stack-row { padding: 22px 0; border-bottom: 1px solid var(--line); }
-  .stack-row h3 { font-size: 1.2rem; margin: 0; }
-  .stack-row p { margin: 0; color: #3a4544; font-size: 16px; }
-  .stack-row p:first-of-type { color: var(--ink); }
-  @media (max-width: 900px) {
-    .stack-head { display: none; }
-    .stack-row { grid-template-columns: 1fr; gap: 8px; }
-    .stack-row p:first-of-type::before { content: 'At Foundation: '; font-weight: 650; }
-    .stack-row p:last-of-type::before { content: 'Before: '; font-weight: 650; color: var(--ink); }
-  }
+  .tab i { font: 500 12.5px var(--mono); font-style: normal; width: 24px; height: 24px; border-radius: 50%; border: 1.5px solid var(--ink); display: grid; place-items: center; }
+  .tab:hover { border-color: var(--ink); }
+  .tab[aria-selected="true"] { border-color: var(--ink); background: var(--ink); color: var(--sheet); }
+  .tab[aria-selected="true"] i { background: var(--redline); border-color: var(--redline); color: #fff; }
+  .layer { padding: 0 0 26px; }
+  .layer + .layer { border-top: 1px solid var(--line); padding-top: 26px; }
+  .layer.solo { border-top: 0; padding-top: 0; }
+  .layer h3 { font-size: 2.3rem; }
+  .layer .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; margin-top: 16px; }
+  .layer .cols > div { border-top: 1px solid var(--ink); padding-top: 10px; }
+  .layer .cols p { margin: 6px 0 0; font-size: 16.5px; }
+  .layer .cols div:last-child p { color: var(--dim); }
 
   /* Projects */
-  .project { display: grid; grid-template-columns: 1.1fr 1fr; gap: 48px; padding: 48px 0; border-top: 1px solid var(--line); align-items: start; }
-  .project:nth-of-type(even) > :first-child { order: 2; }
-  .project .media { display: grid; gap: 8px; }
-  .project .media img, .project .media video { width: 100%; background: var(--paper-2); }
-  .media.tall img { max-height: 520px; object-fit: cover; }
+  .filters { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-bottom: 8px; }
+  .chip { font: inherit; font-size: 15px; padding: 7px 16px; cursor: pointer; background: var(--sheet); color: var(--ink); border: 1.5px solid var(--line); border-radius: 999px; }
+  .chip:hover { border-color: var(--ink); }
+  .chip[aria-pressed="true"] { background: var(--ink); border-color: var(--ink); color: var(--sheet); }
+  .project { display: grid; grid-template-columns: 1.05fr 1fr; gap: 52px; padding: 48px 0; border-top: 1px solid var(--line); align-items: start; }
+  .project.flip > .media { order: 2; }
+  .project[hidden], .more article[hidden] { display: none; }
+  .media { display: grid; gap: 8px; margin: 0; }
+  .media img, .media video { width: 100%; background: var(--sheet-2); border: 1px solid var(--line); }
+  .media.tall img { max-height: 540px; object-fit: cover; }
   .media.pair { grid-template-columns: 1fr 1fr; }
-  .tags { color: var(--steel); font-size: 15px; margin: 0 0 14px; }
-  .results { width: 100%; border-collapse: collapse; margin: 18px 0 16px; font-size: 15px; }
-  .results th, .results td { text-align: left; padding: 9px 0; border-bottom: 1px solid var(--line); vertical-align: top; }
-  .results th { font-weight: 500; color: var(--steel); width: 48%; padding-right: 16px; }
-  .results td { font-weight: 650; font-variant-numeric: tabular-nums; }
-  .thesis-panel { background: var(--ink); color: var(--paper); padding: 32px; }
-  .thesis-panel h4 { margin: 0 0 18px; font-size: 1rem; font-weight: 600; color: #b9c2bf; }
-  .thesis-panel ol { margin: 0; padding-left: 1.2em; display: grid; gap: 12px; }
-  .thesis-panel li::marker { color: var(--tape); font-weight: 700; }
-  .project-link { font-weight: 600; }
+  .media .wide { grid-column: 1 / -1; }
+  .media.light img { background: #fff; }
+  .kicker { margin: 0 0 8px; }
+  .spec { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; margin: 22px 0 18px; border-top: 1.5px solid var(--ink); border-bottom: 1px solid var(--line); }
+  .spec.two { grid-template-columns: repeat(2, 1fr); }
+  .spec div { padding: 12px 14px 12px 0; }
+  .spec div + div { padding-left: 14px; border-left: 1px solid var(--line); }
+  .spec dt { font-family: var(--display); font-weight: 600; font-size: 2.1rem; line-height: 1; font-variant-numeric: tabular-nums; }
+  .spec dt small { font-size: 1.1rem; font-weight: 500; }
+  .spec dd { margin: 6px 0 0; font-size: 14px; line-height: 1.35; color: var(--dim); }
+  .tools { font-family: var(--mono); font-size: 13px; color: var(--dim); margin: 0 0 14px; }
+  .go { font-weight: 600; }
+  .go::after { content: ' \2197'; }
 
-  /* Smaller work list */
+  .panel { border: 1.5px solid var(--ink); padding: 26px 28px; background: var(--sheet); }
+  .panel ol { margin: 14px 0 0; padding: 0; list-style: none; counter-reset: s; display: grid; gap: 12px; }
+  .panel li { counter-increment: s; display: grid; grid-template-columns: 30px 1fr; gap: 10px; font-size: 16px; line-height: 1.45; }
+  .panel li::before { content: counter(s); font: 500 12.5px var(--mono); width: 24px; height: 24px; border-radius: 50%; border: 1.5px solid var(--ink); display: grid; place-items: center; margin-top: 1px; }
+  .bars { margin-top: 26px; border-top: 1px solid var(--line); padding-top: 18px; display: grid; gap: 10px; }
+  .bar { display: grid; grid-template-columns: 62px 1fr 58px; gap: 12px; align-items: center; font-size: 14px; }
+  .bar span { color: var(--dim); }
+  .bar div { height: 14px; background: var(--sheet-2); position: relative; }
+  .bar div::after { content: ''; position: absolute; inset: 0 auto 0 0; width: var(--w); background: var(--dim); }
+  .bar.after div::after { background: var(--redline); }
+  .bar b { font-family: var(--display); font-size: 21px; font-weight: 600; text-align: right; font-variant-numeric: tabular-nums; }
+
+  .fcf { display: inline-flex; border: 1.5px solid var(--ink); font-family: var(--mono); font-size: 14px; margin: 4px 0 0; vertical-align: middle; }
+  .fcf span { padding: 4px 10px; border-right: 1.5px solid var(--ink); display: grid; place-items: center; }
+  .fcf span:last-child { border-right: 0; }
+  .fcf svg { width: 16px; height: 16px; stroke: var(--ink); fill: none; stroke-width: 1.4; }
+  .fcf-note { font-size: 14px; color: var(--dim); margin: 8px 0 16px; }
+
   .more { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0 40px; border-top: 1px solid var(--line); padding-top: 32px; }
-  .more article { padding-bottom: 32px; }
-  .more h3 { font-size: 1.15rem; }
-  .more p { font-size: 15.5px; color: #3a4544; margin: 6px 0 8px; }
+  .more h3 { font-size: 1.5rem; }
+  .more p { font-size: 15.5px; color: var(--dim); }
+  .more article { padding-bottom: 20px; }
 
-  /* Timeline */
-  .timeline { list-style: none; margin: 0; padding: 0; border-left: 2px solid var(--ink); }
-  .timeline li { position: relative; padding: 0 0 36px 32px; }
-  .timeline li::before {
-    content: ''; position: absolute; left: -8px; top: 7px; width: 14px; height: 14px;
-    background: var(--paper); border: 2px solid var(--ink);
-  }
-  .timeline li.current::before { background: var(--tape); }
-  .t-when { color: var(--steel); font-size: 15px; margin: 0; }
-  .t-role { font-weight: 700; font-size: 1.15rem; margin: 2px 0 6px; font-variation-settings: 'wdth' 108; }
-  .timeline ul { margin: 0; padding-left: 1.1em; max-width: var(--measure); color: #3a4544; }
-  .timeline ul li { padding: 0 0 4px; }
-  .timeline ul li::before { display: none; }
+  /* Experience */
+  .timeline { list-style: none; margin: 0; padding: 0; border-top: 2px solid var(--ink); }
+  .timeline > li { display: grid; grid-template-columns: 220px 1fr; gap: 32px; padding: 22px 0; border-bottom: 1px solid var(--line); }
+  .timeline .when { padding-top: 6px; }
+  .timeline .current .when { color: var(--redline); }
+  .timeline h3 { font-size: 1.6rem; }
+  .timeline ul { margin: 0; padding-left: 1.1em; max-width: var(--measure); color: var(--dim); }
 
-  /* Skills */
   .skills { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0 40px; }
   .skills div { border-top: 2px solid var(--ink); padding: 14px 0 28px; }
-  .skills h3 { font-size: 1.05rem; margin-bottom: 8px; }
-  .skills p { margin: 0; color: #3a4544; font-size: 15.5px; }
-
-  /* Education */
+  .skills h3 { font-size: 1.45rem; }
+  .skills p { color: var(--dim); font-size: 15.5px; margin: 0; }
   .edu { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; }
   .edu div { border-top: 1px solid var(--line); padding-top: 14px; }
-  .edu h3 { font-size: 1.15rem; }
-  .edu p { margin: 4px 0 0; color: #3a4544; font-size: 15.5px; }
+  .edu h3 { font-size: 1.45rem; }
+  .edu p { color: var(--dim); font-size: 15.5px; margin: 0; }
 
   /* Contact */
-  .contact { background: var(--ink); color: var(--paper); margin-top: 112px; padding: 88px 0; }
-  .contact h2 { color: var(--paper); font-size: clamp(2.4rem, 6vw, 4.6rem); max-width: 16ch; }
-  .contact p { color: #c4ccc9; }
-  .contact a { color: var(--paper); }
-  .contact-grid { display: grid; grid-template-columns: repeat(4, auto); justify-content: start; gap: 12px 40px; margin-top: 32px; font-size: 17px; }
-  .contact .btn { border-color: var(--paper); color: var(--paper); }
-  .contact .btn.primary { background: var(--tape); border-color: var(--tape); color: var(--ink); }
-  .contact .btn:hover { background: var(--paper); color: var(--ink); }
-  footer { background: var(--ink); color: #8f9a97; font-size: 14px; padding: 0 0 32px; }
+  .contact { background: var(--inv-bg); color: var(--inv-ink); margin-top: 108px; padding: 84px 0 36px; }
+  .contact h2 { font-size: clamp(2.8rem, 7vw, 5.4rem); max-width: 14ch; }
+  .contact p { color: var(--inv-dim); }
+  .contact .btn { background: transparent; border-color: var(--inv-ink); color: var(--inv-ink); }
+  .contact .btn:hover { background: var(--inv-ink); color: var(--inv-bg); }
+  .contact .btn.primary { background: var(--redline); border-color: var(--redline); color: #fff; }
+  .contact-grid { display: flex; flex-wrap: wrap; gap: 10px 40px; margin-top: 34px; padding-top: 22px; border-top: 1px solid var(--inv-dim); font-size: 16px; }
+  .contact small { display: block; margin-top: 48px; color: var(--inv-dim); font-size: 14px; }
 
-  @media (max-width: 900px) {
-    .hero-row, .now, .project { grid-template-columns: 1fr; gap: 28px; }
-    .project:nth-of-type(even) > :first-child { order: 0; }
+  @media (max-width: 960px) {
+    .hero-grid, .stack, .project { grid-template-columns: 1fr; gap: 30px; }
+    .project.flip > .media { order: 0; }
+    .robot { max-width: 320px; margin: 0 auto; }
+    .titleblock { grid-template-columns: repeat(3, 1fr); }
+    .titleblock div { border-bottom: 1px solid var(--ink); }
+    .titleblock div:nth-child(3n) { border-right: 0; }
+    .titleblock div:nth-last-child(-n+3) { border-bottom: 0; }
     .more, .skills, .edu { grid-template-columns: 1fr 1fr; }
-    .strip { grid-template-columns: 1fr 1fr; height: auto; }
-    .strip figure { aspect-ratio: 4 / 3; }
-    .contact-grid { grid-template-columns: 1fr 1fr; }
+    .timeline > li { grid-template-columns: 1fr; gap: 2px; }
   }
-  @media (max-width: 600px) {
+  @media (max-width: 620px) {
     .wrap { padding: 0 16px; }
     .nav { display: none; }
-    .hero { padding-top: 44px; }
-    section { padding-top: 72px; }
-    .more, .skills, .edu, .contact-grid { grid-template-columns: 1fr; }
-    .areas li { grid-template-columns: 1fr; gap: 2px; }
-    .media.pair { grid-template-columns: 1fr; }
-    .thesis-panel { padding: 24px; }
+    .hero-grid { padding-top: 36px; }
+    section { padding-top: 68px; }
+    .titleblock { grid-template-columns: 1fr 1fr; }
+    .titleblock div:nth-child(3n) { border-right: 1px solid var(--ink); }
+    .titleblock div:nth-child(2n) { border-right: 0; }
+    .titleblock div:nth-last-child(-n+3) { border-bottom: 1px solid var(--ink); }
+    .titleblock div:nth-last-child(-n+2) { border-bottom: 0; }
+    .more, .skills, .edu, .layer .cols, .media.pair { grid-template-columns: 1fr; }
+    .layer .cols { gap: 18px; }
+    .spec dt { font-size: 1.7rem; }
+    .panel { padding: 20px; }
   }
 </style>
 </head>
@@ -220,7 +260,6 @@
       <a href="#stack">Humanoid work</a>
       <a href="#work">Projects</a>
       <a href="#experience">Experience</a>
-      <a href="#skills">Skills</a>
       <a href="#contact">Contact</a>
     </nav>
   </div>
@@ -229,24 +268,30 @@
 <main id="top">
   <div class="hero">
     <div class="wrap">
-      <h1>Shubham<br>Jangle</h1>
-      <p class="title">Humanoid robotics engineer</p>
-      <div class="hero-row">
-        <p class="lede">I build humanoid robots, from the actuator on the dyno to the <mark>robot standing up</mark> for the first time.</p>
-        <div class="hero-meta">
-          <p>Robotics Build Engineer at Foundation in San Francisco, building the Phantom humanoid. Before that, legged robots, robot learning, and mechanisms during my MS in Robotics at UC Riverside.</p>
-          <div class="hero-links">
+      <div class="hero-grid">
+        <div>
+          <p class="mono">Robotics engineer</p>
+          <h1>Shubham<br>Jangle</h1>
+          <p class="lede">I build humanoid robots, from the actuator on the dyno to the <em>robot standing up</em> for the first time.</p>
+          <p class="hero-sub">Robotics Build Engineer at Foundation in San Francisco, building the Phantom humanoid. Before that, legged robots, robot learning, and mechanisms during my MS in Robotics at UC Riverside.</p>
+          <div class="links">
             <a class="btn primary" href="mailto:shubhamjangle13@gmail.com">Email me</a>
             <a class="btn" href="https://www.linkedin.com/in/shubham-jangle-43081b27a/" target="_blank" rel="noopener">LinkedIn</a>
             <a class="btn" href="https://github.com/Shubh131102" target="_blank" rel="noopener">GitHub</a>
           </div>
         </div>
+        <figure class="gearbox">
+          <canvas id="gear" width="920" height="920" role="img" aria-label="Animated planetary gear stage: a sun gear drives three planets inside a fixed ring, turning the carrier at one quarter of the input speed"></canvas>
+          <figcaption>Planetary gear actuators are my daily work. Illustrative 4:1 stage: sun 18T, planets 18T, fixed ring 54T.</figcaption>
+        </figure>
       </div>
-      <div class="strip" aria-label="Robots I have built">
-        <figure><img src="assets/img/quadruped.jpg" alt="Orange 3D-printed 12-DOF quadruped robot with Arduino controller on carpet"><figcaption>12-DOF quadruped</figcaption></figure>
-        <figure><video src="assets/img/auv-pool.mp4" poster="assets/img/auv-pool-poster.jpg" autoplay muted loop playsinline aria-label="Fin propulsion mechanism moving in a pool test"></video><figcaption>Fin mechanism, pool test</figcaption></figure>
-        <figure><img src="assets/img/firefighting.jpg" alt="Wooden-chassis firefighting robot with spring launcher tube"><figcaption>Firefighting robot</figcaption></figure>
-        <figure><img src="assets/img/auv-cad.jpg" alt="Annotated CAD section of the AUV fin mechanism showing servo, crankshaft, and fin rays"><figcaption>AUV mechanism CAD</figcaption></figure>
+      <div class="titleblock" aria-label="Summary">
+        <div><span class="mono">Drawn by</span><b>Shubham Jangle</b></div>
+        <div><span class="mono">Role</span><b>Robotics Build Engineer</b></div>
+        <div><span class="mono">Company</span><b>Foundation, San Francisco</b></div>
+        <div><span class="mono">Program</span><b>Phantom humanoid</b></div>
+        <div><span class="mono">Education</span><b>MS Robotics, UC Riverside</b></div>
+        <div><span class="mono">Rev</span><b>Nov 2026</b></div>
       </div>
     </div>
   </div>
@@ -254,37 +299,94 @@
   <section id="stack">
     <div class="wrap">
       <h2>Across the humanoid stack</h2>
-      <p class="section-intro">A humanoid only works when every layer works together. Here's where I've worked at each layer, at Foundation on the Phantom humanoid since June 2026, and in the robots I built before.</p>
-      <div class="stack" role="table" aria-label="My work at each layer of a humanoid robot">
-        <div class="stack-head" role="row">
-          <span role="columnheader">Layer</span>
-          <span role="columnheader">At Foundation</span>
-          <span role="columnheader">Before</span>
-        </div>
-        <div class="stack-row" role="row">
-          <h3 role="rowheader">Actuators</h3>
-          <p role="cell">Build, calibrate, and dyno-test planetary gear actuators for torque, efficiency, and thermal behavior. Wrote the build, calibration, and test docs the team uses.</p>
-          <p role="cell">Sized 12 actuators from joint torque for my quadruped. Fixed a DC motor overheating problem with a cooling redesign, down 20&nbsp;°C.</p>
-        </div>
-        <div class="stack-row" role="row">
-          <h3 role="rowheader">Limbs and hands</h3>
-          <p role="cell">Forearm subassembly testing, actuator installation into joints, and in-house data-capture gloves for hand data, benchmarked against commercial mocap gloves.</p>
-          <p role="cell">Designed quadruped legs with FEA for 25% better stiffness-to-weight, a hip adduction mechanism for balance, and a manipulator end effector held to 1&nbsp;mm repeatability.</p>
-        </div>
-        <div class="stack-row" role="row">
-          <h3 role="rowheader">Whole-robot bring-up</h3>
-          <p role="cell">Bring up new humanoid builds from subassemblies to a full system. Wire harnesses and connectors, and debugging failures across mechanical, electrical, and software.</p>
-          <p role="cell">Took the quadruped from parts to stable walking, tracking down voltage sag, overheating, and cable fatigue along the way.</p>
-        </div>
-        <div class="stack-row" role="row">
-          <h3 role="rowheader">Build support hardware</h3>
-          <p role="cell">Fixtures, robot stands, and a compute bracket designed in SolidWorks, from requirements to drawings, fabrication, and fit checks.</p>
-          <p role="cell">FEA-validated sensor mounts for an autonomous car, within 0.8&nbsp;mm under vibration.</p>
-        </div>
-        <div class="stack-row" role="row">
-          <h3 role="rowheader">Simulation and learning</h3>
-          <p role="cell">MuJoCo models of hands and actuators, and a sit-to-stand policy for the humanoid.</p>
-          <p role="cell">MS thesis on uncertainty-aware imitation learning with zero collisions and 92% task success, plus ROS2 navigation and perception stacks.</p>
+      <p class="intro">A humanoid only works when every layer works together. Pick a balloon on the drawing to see what I've done at that layer, at Foundation since June 2026 and in the robots I built before.</p>
+      <div class="stack">
+        <svg class="robot" viewBox="0 0 360 520" role="group" aria-label="Line drawing of a humanoid robot on a build stand with five numbered callouts">
+          <!-- build stand -->
+          <path class="stand" d="M44 500V34H316V500M22 500H66M294 500H338"/>
+          <path class="thin" d="M180 34V66M172 66H188"/>
+          <rect class="hot" data-hot="4" x="38" y="34" width="12" height="466"/>
+          <!-- legs -->
+          <path class="tube" d="M163 272L160 360L160 445M197 272L200 360L200 445"/>
+          <path class="core" d="M163 272L160 360L160 445M197 272L200 360L200 445"/>
+          <path class="shell" d="M146 452h24v16h-30zM190 452h24l6 16h-30z"/>
+          <!-- arms -->
+          <path class="tube" d="M130 132L121 195L116 252M230 132L239 195L244 252"/>
+          <path class="core" d="M130 132L121 195L116 252M230 132L239 195L244 252"/>
+          <path class="shell" d="M108 258h16v20l-5 8h-8l-3-8zM236 258h16v20l-3 8h-8l-5-8z"/>
+          <!-- torso -->
+          <path class="shell" d="M140 118h80l8 16-14 96h-68l-14-96z"/>
+          <path class="thin" d="M156 150h48v34h-48zM164 196h32"/>
+          <rect class="shell" x="150" y="236" width="60" height="28" rx="5"/>
+          <rect class="shell" x="173" y="106" width="14" height="12"/>
+          <rect class="shell" x="160" y="68" width="40" height="40" rx="9"/>
+          <rect class="thin" x="167" y="80" width="26" height="10" rx="5"/>
+          <!-- joints -->
+          <g class="joint">
+            <circle cx="130" cy="132" r="9"/><circle cx="230" cy="132" r="9"/>
+            <circle cx="121" cy="195" r="7"/><circle cx="239" cy="195" r="7"/>
+            <circle cx="163" cy="272" r="9"/><circle cx="197" cy="272" r="9"/>
+            <circle cx="160" cy="360" r="8"/><circle cx="200" cy="360" r="8"/>
+            <circle cx="160" cy="445" r="6"/><circle cx="200" cy="445" r="6"/>
+          </g>
+          <!-- highlights -->
+          <circle class="hot" data-hot="1" cx="200" cy="360" r="5"/>
+          <circle class="hot" data-hot="1" cx="197" cy="272" r="5.5"/>
+          <path class="hot" data-hot="2" d="M121 195L116 252" style="fill:none;stroke:var(--redline);stroke-width:5;stroke-linecap:round"/>
+          <rect class="hot" data-hot="3" x="156" y="150" width="48" height="34"/>
+          <rect class="hot" data-hot="5" x="167" y="80" width="26" height="10" rx="5"/>
+          <!-- leaders and balloons -->
+          <path class="leader" d="M258 334L207 357M90 214L113 222M258 160L206 166M84 322L50 312M254 62L201 80"/>
+          <g class="balloon" role="button" tabindex="0" data-i="1" aria-label="1, Actuators" aria-pressed="true"><circle cx="270" cy="328" r="14"/><text x="270" y="328">1</text></g>
+          <g class="balloon" role="button" tabindex="0" data-i="2" aria-label="2, Limbs and hands" aria-pressed="false"><circle cx="78" cy="210" r="14"/><text x="78" y="210">2</text></g>
+          <g class="balloon" role="button" tabindex="0" data-i="3" aria-label="3, Whole-robot bring-up" aria-pressed="false"><circle cx="270" cy="158" r="14"/><text x="270" y="158">3</text></g>
+          <g class="balloon" role="button" tabindex="0" data-i="4" aria-label="4, Build support hardware" aria-pressed="false"><circle cx="96" cy="326" r="14"/><text x="96" y="326">4</text></g>
+          <g class="balloon" role="button" tabindex="0" data-i="5" aria-label="5, Simulation and learning" aria-pressed="false"><circle cx="266" cy="58" r="14"/><text x="266" y="58">5</text></g>
+        </svg>
+
+        <div>
+          <div class="stack-tabs" role="tablist" aria-label="Layers of the humanoid" hidden>
+            <button class="tab" role="tab" data-i="1" aria-selected="true"><i>1</i>Actuators</button>
+            <button class="tab" role="tab" data-i="2" aria-selected="false"><i>2</i>Limbs and hands</button>
+            <button class="tab" role="tab" data-i="3" aria-selected="false"><i>3</i>Bring-up</button>
+            <button class="tab" role="tab" data-i="4" aria-selected="false"><i>4</i>Build hardware</button>
+            <button class="tab" role="tab" data-i="5" aria-selected="false"><i>5</i>Sim and learning</button>
+          </div>
+          <article class="layer" data-i="1">
+            <h3>Actuators</h3>
+            <div class="cols">
+              <div><span class="mono">At Foundation</span><p>Build, calibrate, and dyno-test planetary gear actuators for torque, efficiency, and thermal behavior. Wrote the build, calibration, and test docs the team uses.</p></div>
+              <div><span class="mono">Before</span><p>Sized 12 actuators from joint torque for my quadruped. Fixed a DC motor overheating problem with a cooling redesign, down 20&nbsp;°C.</p></div>
+            </div>
+          </article>
+          <article class="layer" data-i="2">
+            <h3>Limbs and hands</h3>
+            <div class="cols">
+              <div><span class="mono">At Foundation</span><p>Forearm subassembly testing, actuator installation into joints, and in-house data-capture gloves for hand data, benchmarked against commercial mocap gloves.</p></div>
+              <div><span class="mono">Before</span><p>Designed quadruped legs with FEA for 25% better stiffness-to-weight, a hip adduction mechanism for balance, and a manipulator end effector held to 1&nbsp;mm repeatability.</p></div>
+            </div>
+          </article>
+          <article class="layer" data-i="3">
+            <h3>Whole-robot bring-up</h3>
+            <div class="cols">
+              <div><span class="mono">At Foundation</span><p>Bring up new humanoid builds from subassemblies to a full system. Wire harnesses and connectors, and debugging failures across mechanical, electrical, and software.</p></div>
+              <div><span class="mono">Before</span><p>Took the quadruped from parts to stable walking, tracking down voltage sag, overheating, and cable fatigue along the way.</p></div>
+            </div>
+          </article>
+          <article class="layer" data-i="4">
+            <h3>Build support hardware</h3>
+            <div class="cols">
+              <div><span class="mono">At Foundation</span><p>Fixtures, robot stands, and a compute bracket designed in SolidWorks, from requirements to drawings, fabrication, and fit checks.</p></div>
+              <div><span class="mono">Before</span><p>FEA-validated sensor mounts for an autonomous car, within 0.8&nbsp;mm under vibration.</p></div>
+            </div>
+          </article>
+          <article class="layer" data-i="5">
+            <h3>Simulation and learning</h3>
+            <div class="cols">
+              <div><span class="mono">At Foundation</span><p>MuJoCo models of hands and actuators, and a sit-to-stand policy for the humanoid.</p></div>
+              <div><span class="mono">Before</span><p>MS thesis on uncertainty-aware imitation learning, with zero collisions in simulation, plus ROS2 navigation and perception stacks.</p></div>
+            </div>
+          </article>
         </div>
       </div>
     </div>
@@ -293,124 +395,145 @@
   <section id="work">
     <div class="wrap">
       <h2>Robots I built before Foundation</h2>
-      <p class="section-intro">The building blocks of a humanoid, learned one robot at a time: legs and gaits, learned policies, mechanisms, and perception. I designed and built each of these end to end.</p>
+      <p class="intro">The building blocks of a humanoid, learned one robot at a time: legs and gaits, learned policies, mechanisms, and perception. I designed and built each of these end to end.</p>
+      <div class="filters" role="group" aria-label="Filter projects">
+        <span class="mono">Show</span>
+        <button class="chip" data-f="all" aria-pressed="true">All work</button>
+        <button class="chip" data-f="mech" aria-pressed="false">Mechanical design</button>
+        <button class="chip" data-f="soft" aria-pressed="false">Autonomy and learning</button>
+      </div>
 
-      <article class="project">
-        <div class="media tall"><img src="assets/img/quadruped.jpg" alt="12-DOF quadruped robot with orange 3D-printed legs" loading="lazy"></div>
+      <article class="project" data-track="mech">
+        <figure class="media tall"><img src="assets/img/quadruped.jpg" alt="12-DOF quadruped robot with orange 3D-printed legs and an Arduino controller"></figure>
         <div>
-          <h3>12-DOF quadruped: legged locomotion</h3>
-          <p class="tags">SolidWorks, ANSYS FEA, Arduino C++, 3D printing. UC Riverside, 2025.</p>
+          <p class="mono kicker">Legged locomotion / UC Riverside, 2025</p>
+          <h3>12-DOF quadruped</h3>
           <p>Designed, printed, wired, and programmed a four-legged robot from scratch. I sized 12 servos from joint torque requirements, added a hip adduction mechanism for side-to-side balance, and used FEA to strip material from low-stress regions of the legs.</p>
           <p>Getting it to walk meant fixing problems I hadn't planned for: the Arduino reset from voltage sag, servos overheated inside the chassis, and cables fatigued at the joints. I upgraded the power wiring, redesigned the chassis for airflow, and rerouted the harness.</p>
-          <table class="results">
-            <tr><th>Stiffness-to-weight gain from FEA</th><td>25%</td></tr>
-            <tr><th>Actuators</th><td>12 servos</td></tr>
-            <tr><th>Outcome</th><td>Stable walking on uneven terrain</td></tr>
-          </table>
-          <a class="project-link" href="https://github.com/Shubh131102/12-DOF-Quadruped-Spider-Robot" target="_blank" rel="noopener">Code and build notes on GitHub</a>
+          <dl class="spec">
+            <div><dt>25%</dt><dd>stiffness-to-weight gain from FEA</dd></div>
+            <div><dt>12</dt><dd>servos, sized from joint torque</dd></div>
+            <div><dt>Walks</dt><dd>stable gait on uneven terrain</dd></div>
+          </dl>
+          <p class="tools">SolidWorks / ANSYS FEA / Arduino C++ / 3D printing</p>
+          <a class="go" href="https://github.com/Shubh131102/12-DOF-Quadruped-Spider-Robot" target="_blank" rel="noopener">Code and build notes on GitHub</a>
         </div>
       </article>
 
-      <article class="project">
-        <div class="thesis-panel">
-          <h4>How the system works</h4>
-          <ol>
-            <li>A policy learns to navigate from expert demonstrations using DAgger.</li>
-            <li>Monte Carlo Dropout estimates how unsure the policy is at every step.</li>
-            <li>When uncertainty rises, the robot slows down, and LiDAR safety zones act as a backstop.</li>
-            <li>Hard cases feed back into training, so the policy improves where it was weakest.</li>
-          </ol>
+      <article class="project flip" data-track="soft">
+        <div class="media">
+          <div class="panel">
+            <span class="mono">How the system works</span>
+            <ol>
+              <li>A policy learns to navigate from expert demonstrations using DAgger.</li>
+              <li>Monte Carlo Dropout estimates how unsure the policy is at every step.</li>
+              <li>When uncertainty rises, the robot slows down, and LiDAR safety zones act as a backstop.</li>
+              <li>Hard cases feed back into training, so the policy improves where it was weakest.</li>
+            </ol>
+            <div class="bars" role="img" aria-label="High-uncertainty events fell from 99.8 percent before to 28.6 percent after">
+              <span class="mono">High-uncertainty events</span>
+              <div class="bar"><span>Before</span><div style="--w:99.8%"></div><b>99.8%</b></div>
+              <div class="bar after"><span>After</span><div style="--w:28.6%"></div><b>28.6%</b></div>
+            </div>
+          </div>
         </div>
         <div>
-          <h3>Uncertainty-aware imitation learning: robot learning</h3>
-          <p class="tags">MS thesis. PyTorch, ROS2, LiDAR. UC Riverside, 2025.</p>
-          <p>A navigation policy that knows when not to trust itself. I took it out of simulation and onto physical robots across three indoor environments.</p>
-          <table class="results">
-            <tr><th>Collisions in real-world tests</th><td>0</td></tr>
-            <tr><th>Task success</th><td>92%</td></tr>
-            <tr><th>Reduction in navigation uncertainty</th><td>43%</td></tr>
-            <tr><th>High-uncertainty events</th><td>99.8% down to 28.6%</td></tr>
-            <tr><th>Training convergence</th><td>5× faster</td></tr>
-          </table>
-          <a class="project-link" href="https://github.com/Shubh131102/Uncertainty-Aware-Imitation-Learning-for-Indoor-Navigation" target="_blank" rel="noopener">Code on GitHub</a>
+          <p class="mono kicker">Robot learning / MS thesis, UC Riverside, 2025</p>
+          <h3>Uncertainty-aware imitation learning</h3>
+          <p>A navigation policy that knows when not to trust itself. It starts as a behavior cloning baseline, gains a safety layer from Monte Carlo Dropout, and is refined with DAgger. Trained and validated on a TurtleBot3 in Gazebo simulation.</p>
+          <dl class="spec">
+            <div><dt>0</dt><dd>collisions in simulation tests</dd></div>
+            <div><dt>43%</dt><dd>lower navigation uncertainty</dd></div>
+            <div><dt>5&times;</dt><dd>faster training convergence</dd></div>
+          </dl>
+          <p class="tools">PyTorch / ROS2 / Gazebo / LiDAR</p>
+          <a class="go" href="https://github.com/Shubh131102/Uncertainty-Aware-Imitation-Learning-for-Indoor-Navigation" target="_blank" rel="noopener">Code on GitHub</a>
         </div>
       </article>
 
-      <article class="project">
-        <div class="media pair">
+      <article class="project" data-track="mech">
+        <figure class="media pair light">
           <video src="assets/img/auv-pool.mp4" poster="assets/img/auv-pool-poster.jpg" muted loop playsinline controls preload="none" aria-label="Pool test of the fin propulsion mechanism"></video>
           <img src="assets/img/auv-render.jpg" alt="Rendered AUV hull with fins along both sides" loading="lazy">
-          <img src="assets/img/auv-cad.jpg" alt="Annotated CAD of the fin mechanism" loading="lazy" style="grid-column: 1 / -1">
-        </div>
+          <img class="wide" src="assets/img/auv-cad.jpg" alt="Annotated CAD of the fin mechanism showing servo, transmission gear, crankshaft, and fin rays" loading="lazy">
+        </figure>
         <div>
-          <h3>HydroMech: a mechanism with 18 moving fins</h3>
-          <p class="tags">SolidWorks, ANSYS, CFD, servo control. Ahmedabad University, 2025.</p>
+          <p class="mono kicker">Mechanism design / Ahmedabad University, 2025</p>
+          <h3>HydroMech, a mechanism with 18 moving fins</h3>
           <p>An underwater vehicle that swims like a cuttlefish. One servo drives a crankshaft and gear train that ripples 18 fins in a traveling wave. I refined the hull shape with CFD, optimized the mounts with stress and deflection analysis, and sealed the electronics with rotary lip seals.</p>
-          <table class="results">
-            <tr><th>Fins driven by one mechanism</th><td>18</td></tr>
-            <tr><th>Fin oscillation</th><td>About 3 Hz</td></tr>
-            <tr><th>Outcome</th><td>Forward propulsion in pool tests</td></tr>
-          </table>
-          <a class="project-link" href="https://github.com/Shubh131102/HydroMech-Fin-Propelled-AUV" target="_blank" rel="noopener">Design files on GitHub</a>
+          <dl class="spec">
+            <div><dt>18</dt><dd>fins driven by one servo</dd></div>
+            <div><dt>3 <small>Hz</small></dt><dd>fin oscillation, approximately</dd></div>
+            <div><dt>Swims</dt><dd>forward propulsion in pool tests</dd></div>
+          </dl>
+          <p class="tools">SolidWorks / ANSYS / CFD / servo control</p>
+          <a class="go" href="https://github.com/Shubh131102/HydroMech-Fin-Propelled-AUV" target="_blank" rel="noopener">Design files on GitHub</a>
         </div>
       </article>
 
-      <article class="project">
-        <div class="media">
+      <article class="project flip" data-track="mech soft">
+        <figure class="media">
           <img src="assets/img/av-sim.jpg" alt="Gazebo simulation of the autonomous vehicle track with pedestrians and traffic signs" loading="lazy">
           <img src="assets/img/av-dashboard.jpg" alt="Web telemetry dashboard showing speed, steering angle, and driving mode" loading="lazy">
-        </div>
+        </figure>
         <div>
+          <p class="mono kicker">Autonomy / Bosch Future Mobility Challenge, 2025</p>
           <h3>Autonomous vehicle platform</h3>
-          <p class="tags">ROS2, SolidWorks, ANSYS, CNN perception. Bosch Future Mobility Challenge, 2025.</p>
-          <p>A small self-driving car built from the sensor mounts up. I designed the LiDAR and camera mount and validated it under vibration with FEA, then built the ROS2 stack: traffic-sign and pedestrian detection, path planning, and a live telemetry dashboard. We moved it from Gazebo to the real car.</p>
-          <table class="results">
-            <tr><th>Sensor mount stability under vibration</th><td>Within 0.8 mm</td></tr>
-            <tr><th>Traffic rule compliance</th><td>85%</td></tr>
-            <tr><th>Perception</th><td>92% accuracy at 20 Hz</td></tr>
-          </table>
-          <a class="project-link" href="https://github.com/Shubh131102/Bfmc-Autonomous-Vehicle" target="_blank" rel="noopener">Code on GitHub</a>
+          <p>A small self-driving car built from the sensor mounts up. I designed the LiDAR and camera mount and validated it under vibration with FEA, then built the ROS2 stack: traffic-sign and pedestrian detection, path planning, and a live telemetry dashboard running on Raspberry Pi and Nucleo boards.</p>
+          <div class="fcf" aria-hidden="true">
+            <span><svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="4.5"/><path d="M8 0v16M0 8h16"/></svg></span>
+            <span>0.8</span><span>A</span>
+          </div>
+          <p class="fcf-note">Sensor mount position held within 0.8 mm under vibration.</p>
+          <dl class="spec two">
+            <div><dt>92%</dt><dd>perception accuracy at 20 Hz</dd></div>
+            <div><dt>85%</dt><dd>traffic rule compliance</dd></div>
+          </dl>
+          <p class="tools">ROS2 / SolidWorks / ANSYS / CNN perception / Gazebo</p>
+          <a class="go" href="https://github.com/Shubh131102/Bfmc-Autonomous-Vehicle" target="_blank" rel="noopener">Code on GitHub</a>
         </div>
       </article>
 
-      <article class="project">
-        <div class="media"><img src="assets/img/slam-map.jpg" alt="RViz occupancy map built by the TurtleBot3 during SLAM exploration" loading="lazy"></div>
+      <article class="project" data-track="soft">
+        <figure class="media"><img src="assets/img/slam-map.jpg" alt="RViz occupancy map built by the TurtleBot3 during SLAM exploration" loading="lazy"></figure>
         <div>
+          <p class="mono kicker">Navigation / UC Riverside, 2025</p>
           <h3>SLAM and autonomous exploration</h3>
-          <p class="tags">ROS2, SLAM Toolbox, Nav2, LiDAR. UC Riverside, 2025.</p>
           <p>A TurtleBot3 that maps an unknown room on its own. SLAM Toolbox builds the map, Nav2 plans with A* and avoids obstacles with DWB, and frontier exploration decides where to go next. Tuning the exploration parameters made the maps noticeably cleaner.</p>
-          <table class="results">
-            <tr><th>Map accuracy improvement</th><td>15%</td></tr>
-            <tr><th>Real-time mapping rate</th><td>10 Hz</td></tr>
-          </table>
-          <a class="project-link" href="https://github.com/Shubh131102/Hybrid-Astar-Slam-Navigation" target="_blank" rel="noopener">Code on GitHub</a>
+          <dl class="spec two">
+            <div><dt>15%</dt><dd>map accuracy improvement</dd></div>
+            <div><dt>10 <small>Hz</small></dt><dd>real-time mapping rate</dd></div>
+          </dl>
+          <p class="tools">ROS2 / SLAM Toolbox / Nav2 / LiDAR</p>
+          <a class="go" href="https://github.com/Shubh131102/Hybrid-Astar-Slam-Navigation" target="_blank" rel="noopener">Code on GitHub</a>
         </div>
       </article>
 
-      <article class="project">
-        <div class="media tall"><img src="assets/img/firefighting.jpg" alt="Firefighting robot with wooden chassis and launcher tube" loading="lazy"></div>
+      <article class="project flip" data-track="mech">
+        <figure class="media tall"><img src="assets/img/firefighting.jpg" alt="Firefighting robot with wooden chassis and launcher tube" loading="lazy"></figure>
         <div>
+          <p class="mono kicker">Mechatronics / PDEU, 2024</p>
           <h3>Firefighting mobile robot</h3>
-          <p class="tags">SolidWorks, Webots, Arduino C++. PDEU, 2024.</p>
           <p>A robot that finds a fire and launches an extinguisher ball at it. I designed the chassis, motor mounts, and a spring launcher set at 45°, wrote the Arduino firmware for flame detection and launch, and fused IR, ultrasonic, and temperature sensors in Webots.</p>
-          <table class="results">
-            <tr><th>Launch range</th><td>30 m</td></tr>
-            <tr><th>Fire detection in simulation</th><td>90%</td></tr>
-          </table>
-          <a class="project-link" href="https://github.com/Shubh131102/fire-fighting-mobile-robot" target="_blank" rel="noopener">Code on GitHub</a>
+          <dl class="spec two">
+            <div><dt>30 <small>m</small></dt><dd>launch range</dd></div>
+            <div><dt>90%</dt><dd>fire detection in simulation</dd></div>
+          </dl>
+          <p class="tools">SolidWorks / Webots / Arduino C++</p>
+          <a class="go" href="https://github.com/Shubh131102/fire-fighting-mobile-robot" target="_blank" rel="noopener">Code on GitHub</a>
         </div>
       </article>
 
       <div class="more">
-        <article>
+        <article data-track="soft">
           <h3>Fault-tolerant propulsion control</h3>
-          <p>Compared PID, LQR, MPC, and sliding mode control for vehicle propulsion, with fault detection that switches controllers when an actuator or sensor fails. Recovered from disturbances 40% faster than baseline PID.</p>
+          <p>Compared PID, LQR, MPC, and sliding mode control for vehicle propulsion in MATLAB and Simulink, with fault detection that switches to a backup controller when an actuator or sensor fails. Recovered from disturbances 40% faster than baseline PID.</p>
         </article>
-        <article>
+        <article data-track="mech">
           <h3>Manipulator end effector</h3>
           <p>Designed the brackets, base mount, and end effector for a robot arm at UC Riverside, and built a fixture to measure repeatability. Held positional accuracy within 1 mm.</p>
         </article>
-        <article>
+        <article data-track="mech">
           <h3>Heat exchanger efficiency</h3>
           <p>At ONGC, analyzed flow in shell-and-tube heat exchangers and refined flow paths for a 12% efficiency gain. Built a maintenance model that cut drilling equipment downtime by 20%.</p>
         </article>
@@ -421,52 +544,55 @@
   <section id="experience">
     <div class="wrap">
       <h2>Experience</h2>
-      <p class="section-intro">Most recent first.</p>
       <ol class="timeline">
         <li class="current">
-          <p class="t-when">June 2026 to present</p>
-          <p class="t-role">Robotics Build Engineer, Foundation</p>
-          <ul>
-            <li>Building the Phantom humanoid: actuator build, calibration, and dyno testing, with the team's build and test documentation</li>
-            <li>Bring-up of new humanoid robots, from subassemblies to full systems</li>
-            <li>Fixtures, robot stands, brackets, harnesses, data gloves, and MuJoCo simulation</li>
-          </ul>
+          <p class="mono when">June 2026 to present</p>
+          <div>
+            <h3>Robotics Build Engineer, Foundation</h3>
+            <ul>
+              <li>Building the Phantom humanoid: actuator build, calibration, and dyno testing, with the team's build and test documentation</li>
+              <li>Bring-up of new humanoid robots, from subassemblies to full systems</li>
+              <li>Fixtures, robot stands, brackets, harnesses, data gloves, and MuJoCo simulation</li>
+            </ul>
+          </div>
         </li>
         <li>
-          <p class="t-when">June to September 2025</p>
-          <p class="t-role">Robotics Engineering Intern, Ahmedabad University</p>
-          <ul>
-            <li>Sensor mount design validated with FEA, plus a full ROS2 autonomy stack for a self-driving car</li>
-            <li>HydroMech fin-propelled underwater vehicle</li>
-          </ul>
+          <p class="mono when">June to September 2025</p>
+          <div>
+            <h3>Robotics Engineering Intern, Ahmedabad University</h3>
+            <ul>
+              <li>Sensor mount design validated with FEA, plus a full ROS2 autonomy stack for a self-driving car</li>
+              <li>HydroMech fin-propelled underwater vehicle</li>
+            </ul>
+          </div>
         </li>
         <li>
-          <p class="t-when">June to August 2025</p>
-          <p class="t-role">AI/ML Intern, Labmentix (remote)</p>
-          <ul>
-            <li>Model development, data preprocessing, and experiments for educational applications</li>
-          </ul>
+          <p class="mono when">June to August 2025</p>
+          <div>
+            <h3>AI/ML Intern, Labmentix (remote)</h3>
+            <ul><li>Model development, data preprocessing, and experiments for educational applications</li></ul>
+          </div>
         </li>
         <li>
-          <p class="t-when">January to March 2025</p>
-          <p class="t-role">Robotics Research Intern, UC Riverside</p>
-          <ul>
-            <li>Manipulator end effector and repeatability fixture, plus SLAM exploration on TurtleBot3</li>
-          </ul>
+          <p class="mono when">January to March 2025</p>
+          <div>
+            <h3>Robotics Research Intern, UC Riverside</h3>
+            <ul><li>Manipulator end effector and repeatability fixture, plus SLAM exploration on TurtleBot3</li></ul>
+          </div>
         </li>
         <li>
-          <p class="t-when">January to May 2024</p>
-          <p class="t-role">Mechatronics Engineering Intern, PDEU</p>
-          <ul>
-            <li>Firefighting robot design and firmware, and a DC motor cooling fix that cut temperature by 20°C</li>
-          </ul>
+          <p class="mono when">January to May 2024</p>
+          <div>
+            <h3>Mechatronics Engineering Intern, PDEU</h3>
+            <ul><li>Firefighting robot design and firmware, and a DC motor cooling fix that cut temperature by 20&nbsp;°C</li></ul>
+          </div>
         </li>
         <li>
-          <p class="t-when">May to June 2023</p>
-          <p class="t-role">Mechanical Engineering Intern, ONGC</p>
-          <ul>
-            <li>Heat exchanger flow analysis and a maintenance model for drilling equipment</li>
-          </ul>
+          <p class="mono when">May to June 2023</p>
+          <div>
+            <h3>Mechanical Engineering Intern, ONGC</h3>
+            <ul><li>Heat exchanger flow analysis and a maintenance model for drilling equipment</li></ul>
+          </div>
         </li>
       </ol>
     </div>
@@ -475,7 +601,7 @@
   <section id="skills">
     <div class="wrap">
       <h2>Tools I use</h2>
-      <p class="section-intro">Grouped by the kind of work, not by how well they look on a list.</p>
+      <p class="intro">Grouped by the kind of work.</p>
       <div class="skills">
         <div><h3>Mechanical design</h3><p>SolidWorks, Fusion 360, CATIA, GD&amp;T (ASME Y14.5), tolerance stacks, DFM and DFA, mechanisms and linkages, fixtures</p></div>
         <div><h3>Build and test</h3><p>Actuator assembly and calibration, dynamometer testing, robot bring-up, wire harnesses, root-cause analysis, test documentation</p></div>
@@ -502,9 +628,10 @@
     <div class="wrap">
       <h2>Building humanoids? Let's talk.</h2>
       <p>I'm always glad to hear from teams building humanoids, whether it's actuators, hands, legs, or getting the whole robot to stand up and work. I'm in San Francisco on F-1 OPT, STEM extension eligible.</p>
-      <div class="hero-links">
+      <div class="links">
         <a class="btn primary" href="mailto:shubhamjangle13@gmail.com">Email me</a>
         <a class="btn" href="https://www.linkedin.com/in/shubham-jangle-43081b27a/" target="_blank" rel="noopener">LinkedIn</a>
+        <a class="btn" href="https://github.com/Shubh131102" target="_blank" rel="noopener">GitHub</a>
       </div>
       <div class="contact-grid">
         <a href="mailto:shubhamjangle13@gmail.com">shubhamjangle13@gmail.com</a>
@@ -512,19 +639,144 @@
         <a href="https://github.com/Shubh131102" target="_blank" rel="noopener">github.com/Shubh131102</a>
         <span>San Francisco, California</span>
       </div>
+      <small>© 2026 Shubham Jangle</small>
     </div>
   </div>
 </main>
 
-<footer>
-  <div class="wrap">© 2026 Shubham Jangle</div>
-</footer>
-
 <script>
-  // Respect reduced-motion: pause the autoplaying hero clip.
-  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-    document.querySelectorAll('video[autoplay]').forEach(v => { v.removeAttribute('autoplay'); v.pause(); v.controls = true; });
+(function () {
+  /* ---------- Humanoid stack: balloons and tabs ---------- */
+  var tablist = document.querySelector('.stack-tabs');
+  var layers = document.querySelectorAll('.layer');
+  var tabs = document.querySelectorAll('.tab');
+  var balloons = document.querySelectorAll('.balloon');
+  var hots = document.querySelectorAll('.hot');
+  function pick(i) {
+    layers.forEach(function (l) { var on = l.dataset.i === i; l.hidden = !on; l.classList.toggle('solo', on); });
+    tabs.forEach(function (t) { t.setAttribute('aria-selected', t.dataset.i === i); });
+    balloons.forEach(function (b) { b.setAttribute('aria-pressed', b.dataset.i === i); });
+    hots.forEach(function (h) { h.classList.toggle('on', h.dataset.hot === i); });
   }
+  tablist.hidden = false;
+  tabs.forEach(function (t) { t.addEventListener('click', function () { pick(t.dataset.i); }); });
+  balloons.forEach(function (b) {
+    b.addEventListener('click', function () { pick(b.dataset.i); });
+    b.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); pick(b.dataset.i); } });
+  });
+  pick('1');
+
+  /* ---------- Project filter ---------- */
+  var chips = document.querySelectorAll('.chip');
+  var items = document.querySelectorAll('[data-track]');
+  chips.forEach(function (c) {
+    c.addEventListener('click', function () {
+      var f = c.dataset.f;
+      chips.forEach(function (x) { x.setAttribute('aria-pressed', x === c); });
+      items.forEach(function (it) { it.hidden = f !== 'all' && it.dataset.track.split(' ').indexOf(f) < 0; });
+    });
+  });
+
+  /* ---------- Planetary gear stage ---------- */
+  var cv = document.getElementById('gear');
+  var ctx = cv.getContext('2d');
+  var ZS = 18, ZP = 18, ZR = 54, N = 3, M = 13;           // module in canvas px
+  var RS = M * ZS / 2, RP = M * ZP / 2, RR = M * ZR / 2, RC = RS + RP;
+  var C = cv.width / 2, TAU = Math.PI * 2;
+  var col = {};
+  function readColors() {
+    var s = getComputedStyle(document.documentElement);
+    ['sheet', 'sheet-2', 'ink', 'dim', 'line', 'redline'].forEach(function (k) { col[k] = s.getPropertyValue('--' + k).trim(); });
+  }
+  function gear(z, ang, internal) {
+    var r = M * z / 2, p = TAU / z;
+    var tip = internal ? r - M : r + M, root = internal ? r + 1.25 * M : r - 1.25 * M;
+    ctx.beginPath();
+    for (var k = 0; k < z; k++) {
+      var a = ang + k * p;
+      [[-0.5, root], [-0.27, root], [-0.12, tip], [0.12, tip], [0.27, root]].forEach(function (pt, j) {
+        var x = Math.cos(a + pt[0] * p) * pt[1], y = Math.sin(a + pt[0] * p) * pt[1];
+        if (k === 0 && j === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+      });
+    }
+    ctx.closePath();
+  }
+  function centerline(len) {
+    ctx.save(); ctx.setLineDash([22, 6, 4, 6]); ctx.lineWidth = 1.5; ctx.strokeStyle = col.dim;
+    ctx.beginPath(); ctx.moveTo(-len, 0); ctx.lineTo(len, 0); ctx.moveTo(0, -len); ctx.lineTo(0, len); ctx.stroke(); ctx.restore();
+  }
+  function draw(ts) {
+    var tc = ts / (1 + ZR / ZS);
+    ctx.setTransform(1, 0, 0, 1, 0, 0);
+    ctx.clearRect(0, 0, cv.width, cv.height);
+    ctx.translate(C, C);
+    ctx.lineJoin = 'round';
+
+    // ring: outer rim with internal teeth
+    ctx.beginPath(); ctx.arc(0, 0, RR + 4.2 * M, 0, TAU);
+    ctx.fillStyle = col['sheet-2']; ctx.fill();
+    ctx.lineWidth = 3; ctx.strokeStyle = col.ink; ctx.stroke();
+    gear(ZR, 0, true);
+    ctx.fillStyle = col.sheet; ctx.fill(); ctx.stroke();
+    // mounting holes on the ring
+    for (var h = 0; h < 6; h++) {
+      var ha = h * TAU / 6 + TAU / 12;
+      ctx.beginPath(); ctx.arc(Math.cos(ha) * (RR + 2.8 * M), Math.sin(ha) * (RR + 2.8 * M), 7, 0, TAU);
+      ctx.fillStyle = col.sheet; ctx.fill(); ctx.lineWidth = 2; ctx.stroke();
+    }
+    centerline(RR + 5.4 * M);
+    // pitch circle of the planet orbit
+    ctx.save(); ctx.setLineDash([10, 8]); ctx.lineWidth = 1.5; ctx.strokeStyle = col.dim;
+    ctx.beginPath(); ctx.arc(0, 0, RC, 0, TAU); ctx.stroke(); ctx.restore();
+
+    // planets
+    var pp = TAU / ZP;
+    for (var i = 0; i < N; i++) {
+      var phi = tc + i * TAU / N;
+      var tp = phi * (1 + ZS / ZP) - ts * ZS / ZP + Math.PI - pp / 2;
+      ctx.save(); ctx.translate(Math.cos(phi) * RC, Math.sin(phi) * RC);
+      gear(ZP, tp, false);
+      ctx.fillStyle = col['sheet-2']; ctx.fill(); ctx.lineWidth = 3; ctx.strokeStyle = col.ink; ctx.stroke();
+      ctx.beginPath(); ctx.arc(0, 0, RP * 0.36, 0, TAU); ctx.fillStyle = col.sheet; ctx.fill(); ctx.lineWidth = 2; ctx.stroke();
+      ctx.restore();
+    }
+    // sun
+    gear(ZS, ts, false);
+    ctx.fillStyle = col.ink; ctx.fill();
+    ctx.beginPath(); ctx.arc(0, 0, RS * 0.3, 0, TAU); ctx.fillStyle = col.sheet; ctx.fill();
+    ctx.beginPath(); ctx.arc(Math.cos(ts) * RS * 0.62, Math.sin(ts) * RS * 0.62, 6, 0, TAU); ctx.fillStyle = col.sheet; ctx.fill();
+
+    // carrier (output), drawn in redline
+    ctx.beginPath();
+    for (var j = 0; j < N; j++) {
+      var a = tc + j * TAU / N;
+      ctx[j ? 'lineTo' : 'moveTo'](Math.cos(a) * RC, Math.sin(a) * RC);
+    }
+    ctx.closePath(); ctx.lineWidth = 7; ctx.strokeStyle = col.redline; ctx.stroke();
+    for (var q = 0; q < N; q++) {
+      var b = tc + q * TAU / N;
+      ctx.beginPath(); ctx.arc(Math.cos(b) * RC, Math.sin(b) * RC, 13, 0, TAU);
+      ctx.fillStyle = col.redline; ctx.fill();
+    }
+  }
+
+  var rpm = 60, theta = 0.35, last = 0;
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function frame(t) {
+    var dt = last ? Math.min(0.05, (t - last) / 1000) : 0; last = t;
+    theta += rpm / 60 * TAU * dt * 0.25;
+    draw(theta);
+    requestAnimationFrame(frame);
+  }
+  readColors(); draw(theta);
+  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function () { readColors(); draw(theta); });
+  new MutationObserver(function () { readColors(); draw(theta); }).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+  if (reduce) {
+    document.querySelectorAll('video[autoplay]').forEach(function (v) { v.removeAttribute('autoplay'); v.pause(); v.controls = true; });
+  } else {
+    requestAnimationFrame(frame);
+  }
+})();
 </script>
 </body>
 </html>
