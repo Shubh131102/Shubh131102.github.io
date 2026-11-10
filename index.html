@@ -3,1239 +3,491 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Shubham Jangle — Robotics Engineer</title>
-<meta name="description" content="Shubham Jangle — robotics engineer designing, building, and validating humanoid robot hardware. MS Robotics, UC Riverside.">
-<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Syne:wght@400;500;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<title>Shubham Jangle, Robotics Engineer</title>
+<meta name="description" content="Shubham Jangle designs, builds, and tests humanoid robot hardware. Robotics Build Engineer at Foundation, MS Robotics from UC Riverside.">
+<meta property="og:title" content="Shubham Jangle, Robotics Engineer">
+<meta property="og:description" content="I design, build, and test robot hardware: actuators, mechanisms, fixtures, and full humanoid bring-up.">
+<meta property="og:image" content="assets/img/quadruped.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..800&display=swap" rel="stylesheet">
 <style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
   :root {
-    --bg: #0a0a0a;
-    --bg2: #111111;
-    --bg3: #161616;
-    --border: rgba(255,255,255,0.08);
-    --border2: rgba(255,255,255,0.14);
-    --text: #f0ede8;
-    --text2: #8a8780;
-    --text3: #555250;
-    --accent: #e8d5b0;
-    --accent2: #c4a96e;
-    --green: #4a9e6e;
-    --green-bg: rgba(74,158,110,0.1);
-    --mono: 'DM Mono', monospace;
-    --sans: 'DM Sans', sans-serif;
-    --display: 'Syne', sans-serif;
+    --paper: #ECEEEA;
+    --paper-2: #E2E5E0;
+    --ink: #1B2221;
+    --steel: #5E6A70;
+    --line: #C9CEC8;
+    --teal: #0E5A5F;
+    --tape: #F2C230;
+    --white: #F8F9F6;
+    --measure: 68ch;
   }
-
+  *, *::before, *::after { box-sizing: border-box; }
   html { scroll-behavior: smooth; }
-
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
   body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: var(--sans);
-    font-size: 15px;
-    line-height: 1.7;
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Archivo', system-ui, sans-serif;
+    font-size: 17px;
+    line-height: 1.6;
+    font-variation-settings: 'wdth' 100;
     -webkit-font-smoothing: antialiased;
   }
+  img, video { display: block; max-width: 100%; }
+  a { color: var(--teal); text-underline-offset: 3px; text-decoration-thickness: 1px; }
+  a:hover { text-decoration-thickness: 2px; }
+  :focus-visible { outline: 3px solid var(--teal); outline-offset: 3px; }
+  .wrap { max-width: 1180px; margin: 0 auto; padding: 0 32px; }
 
-  /* NAV */
-  nav {
-    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 1.25rem 3rem;
-    border-bottom: 1px solid var(--border);
-    background: rgba(10,10,10,0.85);
-    backdrop-filter: blur(12px);
-  }
+  /* Header */
+  .site-header { border-bottom: 1px solid var(--line); }
+  .site-header .wrap { display: flex; align-items: center; justify-content: space-between; gap: 24px; height: 64px; }
+  .mark { font-weight: 700; font-stretch: 125%; color: var(--ink); text-decoration: none; letter-spacing: -0.01em; }
+  .nav { display: flex; gap: 28px; }
+  .nav a { color: var(--ink); text-decoration: none; font-size: 15px; }
+  .nav a:hover { text-decoration: underline; }
 
-  .nav-logo {
-    font-family: var(--mono);
-    font-size: 13px;
-    color: var(--accent);
-    letter-spacing: 0.08em;
-    text-decoration: none;
-  }
-
-  .nav-links {
-    display: flex; gap: 2.5rem; list-style: none;
-  }
-
-  .nav-links a {
-    font-family: var(--mono);
-    font-size: 12px;
-    color: var(--text2);
-    text-decoration: none;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    transition: color 0.2s;
-  }
-
-  .nav-links a:hover { color: var(--text); }
-
-  .nav-status {
-    display: flex; align-items: center; gap: 8px;
-    font-family: var(--mono);
-    font-size: 11px;
-    color: var(--green);
-  }
-
-  .status-dot {
-    width: 6px; height: 6px;
-    border-radius: 50%;
-    background: var(--green);
-    animation: pulse 2s infinite;
-  }
-
-  @keyframes pulse {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.4; }
-  }
-
-  /* SECTIONS */
-  section { padding: 6rem 3rem; max-width: 1100px; margin: 0 auto; }
-
-  /* HERO */
-  .hero {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding-top: 8rem;
-    max-width: 1100px;
-    margin: 0 auto;
-    padding-left: 3rem;
-    padding-right: 3rem;
-  }
-
-  .hero-tag {
-    font-family: var(--mono);
-    font-size: 12px;
-    color: var(--accent2);
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    margin-bottom: 2rem;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-  }
-
-  .hero-tag::before {
-    content: '';
-    display: block;
-    width: 32px;
-    height: 1px;
-    background: var(--accent2);
-  }
-
-  h1 {
-    font-family: var(--display);
-    font-size: clamp(3rem, 7vw, 6.5rem);
+  /* Hero */
+  .hero { padding: 72px 0 0; }
+  .hero h1 {
+    margin: 0;
+    font-size: clamp(3rem, 9.5vw, 8.4rem);
+    line-height: 0.92;
     font-weight: 800;
-    line-height: 1.0;
+    font-stretch: 125%;
     letter-spacing: -0.03em;
-    color: var(--text);
-    margin-bottom: 0.1em;
   }
-
-  .hero-subtitle {
-    font-family: var(--display);
-    font-size: clamp(1.8rem, 4vw, 3.5rem);
-    font-weight: 400;
-    color: var(--text3);
-    line-height: 1.1;
-    margin-bottom: 2.5rem;
+  .hero-row { display: grid; grid-template-columns: 1.15fr 1fr; gap: 48px; margin-top: 36px; align-items: end; }
+  .lede { font-size: clamp(1.25rem, 2vw, 1.55rem); line-height: 1.4; margin: 0; max-width: 30ch; }
+  .lede mark { background: linear-gradient(transparent 58%, var(--tape) 58%); color: inherit; padding: 0 2px; }
+  .hero-meta { margin: 0; font-size: 16px; color: var(--steel); max-width: 44ch; }
+  .hero-meta p { margin: 0 0 14px; }
+  .hero-links { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 8px; }
+  .btn {
+    display: inline-block; padding: 12px 20px; font-size: 15px; font-weight: 600;
+    text-decoration: none; border: 1.5px solid var(--ink); color: var(--ink); background: transparent;
   }
+  .btn:hover { background: var(--ink); color: var(--paper); }
+  .btn.primary { background: var(--ink); color: var(--paper); }
+  .btn.primary:hover { background: var(--teal); border-color: var(--teal); }
 
-  .hero-desc {
-    max-width: 560px;
-    font-size: 16px;
-    color: var(--text2);
-    line-height: 1.8;
-    margin-bottom: 3rem;
-  }
-
-  .hero-desc strong {
-    color: var(--accent);
-    font-weight: 500;
-  }
-
-  .hero-actions {
-    display: flex;
-    gap: 1rem;
-    flex-wrap: wrap;
-    margin-bottom: 5rem;
-  }
-
-  .btn-primary {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 0.85rem 1.75rem;
-    background: var(--accent);
-    color: #0a0a0a;
-    font-family: var(--mono);
-    font-size: 12px;
-    font-weight: 500;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    text-decoration: none;
-    border: none;
-    cursor: pointer;
-    transition: all 0.2s;
-  }
-
-  .btn-primary:hover { background: var(--accent2); }
-
-  .btn-outline {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 0.85rem 1.75rem;
-    background: transparent;
-    color: var(--text2);
-    font-family: var(--mono);
-    font-size: 12px;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    text-decoration: none;
-    border: 1px solid var(--border2);
-    transition: all 0.2s;
-  }
-
-  .btn-outline:hover { border-color: var(--text2); color: var(--text); }
-
-  .hero-stats {
+  .strip {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 0;
-    border-top: 1px solid var(--border);
-    padding-top: 2.5rem;
+    grid-template-columns: 1.1fr 1.4fr 1fr 1.3fr;
+    gap: 8px;
+    margin-top: 56px;
+    height: clamp(220px, 30vw, 360px);
+  }
+  .strip figure { margin: 0; position: relative; overflow: hidden; background: var(--paper-2); }
+  .strip img, .strip video { width: 100%; height: 100%; object-fit: cover; }
+  .strip figcaption {
+    position: absolute; left: 0; bottom: 0; padding: 6px 10px;
+    background: var(--ink); color: var(--paper); font-size: 13px; line-height: 1.3;
   }
 
-  .stat {
-    padding-right: 2rem;
-    border-right: 1px solid var(--border);
-    margin-right: 2rem;
-  }
-
-  .stat:last-child { border-right: none; margin-right: 0; }
-
-  .stat-number {
-    font-family: var(--display);
-    font-size: 2.2rem;
-    font-weight: 700;
-    color: var(--accent);
-    line-height: 1;
-    margin-bottom: 0.3rem;
-  }
-
-  .stat-label {
-    font-family: var(--mono);
-    font-size: 11px;
-    color: var(--text3);
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-  }
-
-  /* SECTION HEADERS */
-  .section-header {
-    display: flex;
-    align-items: center;
-    gap: 1.5rem;
-    margin-bottom: 3.5rem;
-  }
-
-  .section-num {
-    font-family: var(--mono);
-    font-size: 11px;
-    color: var(--accent2);
-    letter-spacing: 0.1em;
-  }
-
+  /* Sections */
+  section { padding: 96px 0 0; }
   h2 {
-    font-family: var(--display);
-    font-size: 2.4rem;
-    font-weight: 700;
+    font-size: clamp(2rem, 4vw, 3rem);
+    line-height: 1.05;
+    font-weight: 750;
+    font-stretch: 118%;
     letter-spacing: -0.02em;
-    color: var(--text);
+    margin: 0 0 12px;
   }
+  .section-intro { color: var(--steel); margin: 0 0 40px; max-width: var(--measure); }
+  h3 { font-size: 1.45rem; line-height: 1.2; font-weight: 700; font-variation-settings: 'wdth' 110; margin: 0 0 6px; letter-spacing: -0.01em; }
+  p { max-width: var(--measure); }
 
-  .section-line {
-    flex: 1;
-    height: 1px;
-    background: var(--border);
+  /* Now / Foundation */
+  .now { display: grid; grid-template-columns: 1fr 1.25fr; gap: 56px; border-top: 2px solid var(--ink); padding-top: 28px; }
+  .now .role { font-size: 1.1rem; margin: 0 0 4px; font-weight: 600; }
+  .now .when { color: var(--steel); margin: 0 0 18px; }
+  .areas { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line); }
+  .areas li { display: grid; grid-template-columns: 11rem 1fr; gap: 20px; padding: 16px 0; border-bottom: 1px solid var(--line); }
+  .areas strong { font-weight: 650; }
+  .areas span { color: #3a4544; }
+
+  /* Projects */
+  .project { display: grid; grid-template-columns: 1.1fr 1fr; gap: 48px; padding: 48px 0; border-top: 1px solid var(--line); align-items: start; }
+  .project:nth-of-type(even) > :first-child { order: 2; }
+  .project .media { display: grid; gap: 8px; }
+  .project .media img, .project .media video { width: 100%; background: var(--paper-2); }
+  .media.tall img { max-height: 520px; object-fit: cover; }
+  .media.pair { grid-template-columns: 1fr 1fr; }
+  .tags { color: var(--steel); font-size: 15px; margin: 0 0 14px; }
+  .results { width: 100%; border-collapse: collapse; margin: 18px 0 16px; font-size: 15px; }
+  .results th, .results td { text-align: left; padding: 9px 0; border-bottom: 1px solid var(--line); vertical-align: top; }
+  .results th { font-weight: 500; color: var(--steel); width: 48%; padding-right: 16px; }
+  .results td { font-weight: 650; font-variant-numeric: tabular-nums; }
+  .thesis-panel { background: var(--ink); color: var(--paper); padding: 32px; }
+  .thesis-panel h4 { margin: 0 0 18px; font-size: 1rem; font-weight: 600; color: #b9c2bf; }
+  .thesis-panel ol { margin: 0; padding-left: 1.2em; display: grid; gap: 12px; }
+  .thesis-panel li::marker { color: var(--tape); font-weight: 700; }
+  .project-link { font-weight: 600; }
+
+  /* Smaller work list */
+  .more { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0 40px; border-top: 1px solid var(--line); padding-top: 32px; }
+  .more article { padding-bottom: 32px; }
+  .more h3 { font-size: 1.15rem; }
+  .more p { font-size: 15.5px; color: #3a4544; margin: 6px 0 8px; }
+
+  /* Timeline */
+  .timeline { list-style: none; margin: 0; padding: 0; border-left: 2px solid var(--ink); }
+  .timeline li { position: relative; padding: 0 0 36px 32px; }
+  .timeline li::before {
+    content: ''; position: absolute; left: -8px; top: 7px; width: 14px; height: 14px;
+    background: var(--paper); border: 2px solid var(--ink);
   }
+  .timeline li.current::before { background: var(--tape); }
+  .t-when { color: var(--steel); font-size: 15px; margin: 0; }
+  .t-role { font-weight: 700; font-size: 1.15rem; margin: 2px 0 6px; font-variation-settings: 'wdth' 108; }
+  .timeline ul { margin: 0; padding-left: 1.1em; max-width: var(--measure); color: #3a4544; }
+  .timeline ul li { padding: 0 0 4px; }
+  .timeline ul li::before { display: none; }
 
-  /* ABOUT */
-  .about-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 5rem;
-    align-items: start;
+  /* Skills */
+  .skills { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0 40px; }
+  .skills div { border-top: 2px solid var(--ink); padding: 14px 0 28px; }
+  .skills h3 { font-size: 1.05rem; margin-bottom: 8px; }
+  .skills p { margin: 0; color: #3a4544; font-size: 15.5px; }
+
+  /* Education */
+  .edu { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; }
+  .edu div { border-top: 1px solid var(--line); padding-top: 14px; }
+  .edu h3 { font-size: 1.15rem; }
+  .edu p { margin: 4px 0 0; color: #3a4544; font-size: 15.5px; }
+
+  /* Contact */
+  .contact { background: var(--ink); color: var(--paper); margin-top: 112px; padding: 88px 0; }
+  .contact h2 { color: var(--paper); font-size: clamp(2.4rem, 6vw, 4.6rem); max-width: 16ch; }
+  .contact p { color: #c4ccc9; }
+  .contact a { color: var(--paper); }
+  .contact-grid { display: grid; grid-template-columns: repeat(4, auto); justify-content: start; gap: 12px 40px; margin-top: 32px; font-size: 17px; }
+  .contact .btn { border-color: var(--paper); color: var(--paper); }
+  .contact .btn.primary { background: var(--tape); border-color: var(--tape); color: var(--ink); }
+  .contact .btn:hover { background: var(--paper); color: var(--ink); }
+  footer { background: var(--ink); color: #8f9a97; font-size: 14px; padding: 0 0 32px; }
+
+  @media (max-width: 900px) {
+    .hero-row, .now, .project { grid-template-columns: 1fr; gap: 28px; }
+    .project:nth-of-type(even) > :first-child { order: 0; }
+    .more, .skills, .edu { grid-template-columns: 1fr 1fr; }
+    .strip { grid-template-columns: 1fr 1fr; height: auto; }
+    .strip figure { aspect-ratio: 4 / 3; }
+    .contact-grid { grid-template-columns: 1fr 1fr; }
   }
-
-  .about-text p {
-    color: var(--text2);
-    margin-bottom: 1.2rem;
-    font-size: 15px;
-    line-height: 1.9;
-  }
-
-  .about-text p strong {
-    color: var(--accent);
-    font-weight: 500;
-  }
-
-  .about-info {
-    display: flex;
-    flex-direction: column;
-    gap: 0;
-  }
-
-  .info-row {
-    display: flex;
-    align-items: baseline;
-    gap: 1rem;
-    padding: 1rem 0;
-    border-bottom: 1px solid var(--border);
-  }
-
-  .info-label {
-    font-family: var(--mono);
-    font-size: 11px;
-    color: var(--text3);
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    min-width: 100px;
-  }
-
-  .info-value {
-    font-size: 14px;
-    color: var(--text2);
-  }
-
-  .info-value a {
-    color: var(--accent2);
-    text-decoration: none;
-  }
-
-  .info-value a:hover { color: var(--accent); }
-
-  /* SKILLS */
-  .skills-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1px;
-    background: var(--border);
-    border: 1px solid var(--border);
-  }
-
-  .skill-group {
-    background: var(--bg);
-    padding: 2rem;
-  }
-
-  .skill-group-title {
-    font-family: var(--mono);
-    font-size: 11px;
-    color: var(--accent2);
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    margin-bottom: 1.2rem;
-  }
-
-  .skill-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-  }
-
-  .tag {
-    font-family: var(--mono);
-    font-size: 11px;
-    color: var(--text2);
-    background: var(--bg3);
-    border: 1px solid var(--border);
-    padding: 4px 10px;
-    letter-spacing: 0.04em;
-    transition: all 0.2s;
-  }
-
-  .tag:hover {
-    border-color: var(--border2);
-    color: var(--text);
-  }
-
-  /* EXPERIENCE */
-  .exp-list {
-    display: flex;
-    flex-direction: column;
-    gap: 0;
-  }
-
-  .exp-item {
-    display: grid;
-    grid-template-columns: 200px 1fr;
-    gap: 3rem;
-    padding: 2.5rem 0;
-    border-bottom: 1px solid var(--border);
-  }
-
-  .exp-meta {
-    display: flex;
-    flex-direction: column;
-    gap: 0.4rem;
-  }
-
-  .exp-period {
-    font-family: var(--mono);
-    font-size: 11px;
-    color: var(--text3);
-    letter-spacing: 0.06em;
-  }
-
-  .exp-org {
-    font-family: var(--mono);
-    font-size: 12px;
-    color: var(--accent2);
-  }
-
-  .exp-type {
-    display: inline-block;
-    font-family: var(--mono);
-    font-size: 10px;
-    color: var(--green);
-    background: var(--green-bg);
-    padding: 2px 8px;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    margin-top: 0.5rem;
-    width: fit-content;
-  }
-
-  .exp-title {
-    font-family: var(--display);
-    font-size: 1.2rem;
-    font-weight: 600;
-    color: var(--text);
-    margin-bottom: 0.8rem;
-    letter-spacing: -0.01em;
-  }
-
-  .exp-bullets {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-  }
-
-  .exp-bullets li {
-    font-size: 14px;
-    color: var(--text2);
-    line-height: 1.7;
-    padding-left: 1.2rem;
-    position: relative;
-  }
-
-  .exp-bullets li::before {
-    content: '—';
-    position: absolute;
-    left: 0;
-    color: var(--text3);
-    font-size: 12px;
-  }
-
-  .exp-bullets li strong {
-    color: var(--accent);
-    font-weight: 500;
-  }
-
-  /* PROJECTS */
-  .projects-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1px;
-    background: var(--border);
-    border: 1px solid var(--border);
-  }
-
-  .project-card {
-    background: var(--bg);
-    padding: 2.5rem;
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    transition: background 0.2s;
-    text-decoration: none;
-    color: inherit;
-  }
-
-  .project-card:hover { background: var(--bg2); }
-
-  .project-num {
-    font-family: var(--mono);
-    font-size: 11px;
-    color: var(--text3);
-    letter-spacing: 0.08em;
-  }
-
-  .project-title {
-    font-family: var(--display);
-    font-size: 1.3rem;
-    font-weight: 700;
-    color: var(--text);
-    letter-spacing: -0.02em;
-    line-height: 1.2;
-  }
-
-  .project-desc {
-    font-size: 13px;
-    color: var(--text2);
-    line-height: 1.7;
-    flex: 1;
-  }
-
-  .project-metrics {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    margin: 0.5rem 0;
-  }
-
-  .metric {
-    font-family: var(--mono);
-    font-size: 11px;
-    color: var(--accent2);
-    background: rgba(196,169,110,0.08);
-    border: 1px solid rgba(196,169,110,0.2);
-    padding: 3px 10px;
-    letter-spacing: 0.04em;
-  }
-
-  .project-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
-  }
-
-  .project-footer {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-top: 0.5rem;
-    padding-top: 1rem;
-    border-top: 1px solid var(--border);
-  }
-
-  .project-link {
-    font-family: var(--mono);
-    font-size: 11px;
-    color: var(--text3);
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    transition: color 0.2s;
-  }
-
-  .project-card:hover .project-link { color: var(--accent2); }
-
-  .project-arrow {
-    font-size: 14px;
-    transition: transform 0.2s;
-  }
-
-  .project-card:hover .project-arrow { transform: translate(3px, -3px); }
-
-  /* CONTACT */
-  .contact-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 5rem;
-    align-items: start;
-  }
-
-  .contact-text h3 {
-    font-family: var(--display);
-    font-size: 2rem;
-    font-weight: 700;
-    color: var(--text);
-    margin-bottom: 1rem;
-    letter-spacing: -0.02em;
-  }
-
-  .contact-text p {
-    color: var(--text2);
-    font-size: 15px;
-    line-height: 1.8;
-    margin-bottom: 2rem;
-  }
-
-  .contact-links {
-    display: flex;
-    flex-direction: column;
-    gap: 0;
-  }
-
-  .contact-link {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    padding: 1.2rem 0;
-    border-bottom: 1px solid var(--border);
-    text-decoration: none;
-    transition: all 0.2s;
-    group: true;
-  }
-
-  .contact-link:hover .contact-link-label { color: var(--accent); }
-
-  .contact-link-type {
-    font-family: var(--mono);
-    font-size: 11px;
-    color: var(--text3);
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    min-width: 80px;
-  }
-
-  .contact-link-label {
-    font-size: 14px;
-    color: var(--text2);
-    transition: color 0.2s;
-  }
-
-  .contact-avail {
-    border: 1px solid var(--border);
-    padding: 2rem;
-  }
-
-  .avail-title {
-    font-family: var(--mono);
-    font-size: 11px;
-    color: var(--text3);
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    margin-bottom: 1.5rem;
-  }
-
-  .avail-item {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 0.7rem 0;
-    border-bottom: 1px solid var(--border);
-    font-size: 13px;
-    color: var(--text2);
-  }
-
-  .avail-dot {
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: var(--green);
-    flex-shrink: 0;
-  }
-
-  /* FOOTER */
-  footer {
-    border-top: 1px solid var(--border);
-    padding: 2rem 3rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    max-width: none;
-  }
-
-  .footer-copy {
-    font-family: var(--mono);
-    font-size: 11px;
-    color: var(--text3);
-    letter-spacing: 0.06em;
-  }
-
-  .footer-links {
-    display: flex;
-    gap: 2rem;
-  }
-
-  .footer-links a {
-    font-family: var(--mono);
-    font-size: 11px;
-    color: var(--text3);
-    text-decoration: none;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    transition: color 0.2s;
-  }
-
-  .footer-links a:hover { color: var(--text2); }
-
-  /* DIVIDER */
-  .full-border {
-    border-top: 1px solid var(--border);
-  }
-
-  /* SCROLL REVEAL */
-  .reveal {
-    opacity: 0;
-    transform: translateY(24px);
-    transition: opacity 0.6s ease, transform 0.6s ease;
-  }
-
-  .reveal.visible {
-    opacity: 1;
-    transform: none;
-  }
-
-  @media (max-width: 768px) {
-    nav { padding: 1rem 1.5rem; }
-    .nav-links { display: none; }
-    .nav-status { display: none; }
-    section { padding: 4rem 1.5rem; }
-    .hero { padding: 7rem 1.5rem 4rem; }
-    h1 { font-size: 3rem; }
-    .hero-subtitle { font-size: 1.8rem; }
-    .hero-stats { grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
-    .stat { border-right: none; margin-right: 0; }
-    .about-grid { grid-template-columns: 1fr; gap: 3rem; }
-    .skills-grid { grid-template-columns: 1fr; }
-    .exp-item { grid-template-columns: 1fr; gap: 1rem; }
-    .projects-grid { grid-template-columns: 1fr; }
-    .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
-    footer { flex-direction: column; gap: 1rem; padding: 1.5rem; }
-  }
-
-  /* ADDITIONS */
-  .projects-grid > .project-card:last-child:nth-child(odd) { grid-column: span 2; }
-  .exp-item.current .exp-title::after {
-    content: 'Current';
-    font-family: var(--mono);
-    font-size: 10px;
-    color: var(--green);
-    background: var(--green-bg);
-    padding: 2px 8px;
-    margin-left: 10px;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    vertical-align: middle;
-  }
-  .exp-sub {
-    font-size: 14px;
-    color: var(--text2);
-    margin-bottom: 1rem;
-    line-height: 1.7;
-  }
-  @media (max-width: 768px) {
-    .projects-grid > .project-card:last-child:nth-child(odd) { grid-column: auto; }
-    .hero-stats .stat-number { font-size: 1.8rem; }
+  @media (max-width: 600px) {
+    .wrap { padding: 0 16px; }
+    .nav { display: none; }
+    .hero { padding-top: 44px; }
+    section { padding-top: 72px; }
+    .more, .skills, .edu, .contact-grid { grid-template-columns: 1fr; }
+    .areas li { grid-template-columns: 1fr; gap: 2px; }
+    .media.pair { grid-template-columns: 1fr; }
+    .thesis-panel { padding: 24px; }
   }
 </style>
 </head>
 <body>
 
-<!-- NAV -->
-<nav>
-  <a href="#" class="nav-logo">SJ.ENG</a>
-  <ul class="nav-links">
-    <li><a href="#about">About</a></li>
-    <li><a href="#experience">Experience</a></li>
-    <li><a href="#projects">Projects</a></li>
-    <li><a href="#skills">Skills</a></li>
-    <li><a href="#contact">Contact</a></li>
-  </ul>
-  <div class="nav-status">
-    <div class="status-dot"></div>
-    Building humanoids @ Foundation
+<header class="site-header">
+  <div class="wrap">
+    <a class="mark" href="#top">Shubham Jangle</a>
+    <nav class="nav" aria-label="Main">
+      <a href="#now">Foundation</a>
+      <a href="#work">Projects</a>
+      <a href="#experience">Experience</a>
+      <a href="#skills">Skills</a>
+      <a href="#contact">Contact</a>
+    </nav>
   </div>
-</nav>
+</header>
 
-<!-- HERO -->
-<div class="hero">
-  <div class="hero-tag">Robotics Build Engineer — Foundation</div>
-  <h1>Shubham</h1>
-  <h1>Jangle</h1>
-  <p class="hero-subtitle">Robotics Engineer</p>
-  <p class="hero-desc">
-    I design, build, and validate <strong>humanoid robot hardware</strong>: fixtures and brackets in CAD, actuators on the dyno, and full robots through bring-up. Backed by an MS in Robotics with hands-on work in <strong>FEA, ROS2 autonomy, and robot learning</strong>.
-  </p>
-  <div class="hero-actions">
-    <a href="mailto:shubhamjangle13@gmail.com" class="btn-primary">Get in Touch ↗</a>
-    <a href="https://github.com/Shubh131102" target="_blank" rel="noopener" class="btn-outline">GitHub</a>
-    <a href="https://www.linkedin.com/in/shubham-jangle-43081b27a/" target="_blank" rel="noopener" class="btn-outline">LinkedIn</a>
-  </div>
-  <div class="hero-stats">
-    <div class="stat">
-      <div class="stat-number">Humanoid</div>
-      <div class="stat-label">Build &amp; Bring-Up</div>
-    </div>
-    <div class="stat">
-      <div class="stat-number">12-DOF</div>
-      <div class="stat-label">Quadruped Built From Scratch</div>
-    </div>
-    <div class="stat">
-      <div class="stat-number">0.8mm</div>
-      <div class="stat-label">FEA-Validated Sensor Stability</div>
-    </div>
-    <div class="stat">
-      <div class="stat-number">92%</div>
-      <div class="stat-label">Learned-Policy Task Success</div>
+<main id="top">
+  <div class="hero">
+    <div class="wrap">
+      <h1>Shubham<br>Jangle</h1>
+      <div class="hero-row">
+        <p class="lede">I design, build, and test robot hardware, from the actuator on the dyno to the <mark>humanoid standing up</mark> for the first time.</p>
+        <div class="hero-meta">
+          <p>Robotics Build Engineer at Foundation in San Francisco, working on the Phantom humanoid. MS in Robotics from UC Riverside, BE in Mechanical Engineering.</p>
+          <div class="hero-links">
+            <a class="btn primary" href="mailto:shubhamjangle13@gmail.com">Email me</a>
+            <a class="btn" href="https://www.linkedin.com/in/shubham-jangle-43081b27a/" target="_blank" rel="noopener">LinkedIn</a>
+            <a class="btn" href="https://github.com/Shubh131102" target="_blank" rel="noopener">GitHub</a>
+          </div>
+        </div>
+      </div>
+      <div class="strip" aria-label="Robots I have built">
+        <figure><img src="assets/img/quadruped.jpg" alt="Orange 3D-printed 12-DOF quadruped robot with Arduino controller on carpet"><figcaption>12-DOF quadruped</figcaption></figure>
+        <figure><video src="assets/img/auv-pool.mp4" poster="assets/img/auv-pool-poster.jpg" autoplay muted loop playsinline aria-label="Fin propulsion mechanism moving in a pool test"></video><figcaption>Fin mechanism, pool test</figcaption></figure>
+        <figure><img src="assets/img/firefighting.jpg" alt="Wooden-chassis firefighting robot with spring launcher tube"><figcaption>Firefighting robot</figcaption></figure>
+        <figure><img src="assets/img/auv-cad.jpg" alt="Annotated CAD section of the AUV fin mechanism showing servo, crankshaft, and fin rays"><figcaption>AUV mechanism CAD</figcaption></figure>
+      </div>
     </div>
   </div>
-</div>
 
-<!-- ABOUT -->
-<div class="full-border"></div>
-<section id="about">
-  <div class="section-header reveal">
-    <span class="section-num">01</span>
-    <h2>About</h2>
-    <div class="section-line"></div>
-  </div>
-  <div class="about-grid">
-    <div class="about-text reveal">
-      <p>I'm a Robotics Build Engineer at <strong>Foundation</strong>, a humanoid robotics company in San Francisco. I work on the hardware end to end: designing fixtures, stands, and brackets in SolidWorks, building and dyno-testing planetary gear actuators, and bringing new humanoid robots up from subassembly to a full working system.</p>
-      <p>Before Foundation, I earned my <strong>MS in Robotics from UC Riverside</strong>. My work there spanned both sides of robotics: mechanical design and FEA for legged robots, autonomous vehicles, and underwater propulsion, and software work in ROS2 navigation, SLAM, perception, and uncertainty-aware imitation learning deployed on physical robots.</p>
-      <p>What I care about most is hardware that holds up on the robot, not just in CAD or simulation. I like owning a problem from the first sketch to the last failure fix: designing the part, building it, finding where it breaks, and making it better.</p>
-    </div>
-    <div class="about-info reveal">
-      <div class="info-row">
-        <span class="info-label">Current</span>
-        <span class="info-value">Robotics Build Engineer, Foundation</span>
-      </div>
-      <div class="info-row">
-        <span class="info-label">Location</span>
-        <span class="info-value">San Francisco, California</span>
-      </div>
-      <div class="info-row">
-        <span class="info-label">Master's</span>
-        <span class="info-value">MS Robotics, UC Riverside (GPA 3.7)</span>
-      </div>
-      <div class="info-row">
-        <span class="info-label">Bachelor's</span>
-        <span class="info-value">BE Mechanical, PDEU</span>
-      </div>
-      <div class="info-row">
-        <span class="info-label">Work Auth</span>
-        <span class="info-value">F-1 OPT, STEM extension eligible</span>
-      </div>
-      <div class="info-row">
-        <span class="info-label">Email</span>
-        <span class="info-value"><a href="mailto:shubhamjangle13@gmail.com">shubhamjangle13@gmail.com</a></span>
-      </div>
-      <div class="info-row">
-        <span class="info-label">GitHub</span>
-        <span class="info-value"><a href="https://github.com/Shubh131102" target="_blank" rel="noopener">Shubh131102</a></span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- EXPERIENCE -->
-<div class="full-border"></div>
-<section id="experience">
-  <div class="section-header reveal">
-    <span class="section-num">02</span>
-    <h2>Experience</h2>
-    <div class="section-line"></div>
-  </div>
-  <div class="exp-list">
-
-    <div class="exp-item current reveal">
-      <div class="exp-meta">
-        <span class="exp-period">Jun 2026 – Present</span>
-        <span class="exp-org">Foundation</span>
-        <span class="exp-type">Full-time</span>
-      </div>
-      <div class="exp-content">
-        <div class="exp-title">Robotics Build Engineer</div>
-        <p class="exp-sub">Building and integrating the Phantom humanoid robot, from actuator builds to full-system bring-up, as the program moves from prototype to production.</p>
-        <ul class="exp-bullets">
-          <li>Designed <strong>test fixtures, robot stands, and a compute bracket</strong> in SolidWorks, from load and interface requirements through 2D drawings, fabrication, and fit checks on the robot</li>
-          <li>Built, calibrated, and <strong>dynamometer-tested planetary gear actuators</strong> for torque, efficiency, and thermal behavior; wrote the assembly, calibration, and test documentation used for actuator builds</li>
-          <li>Led <strong>robot bring-up</strong> on new humanoid builds, from forearm subassembly testing to actuator installation and full-system integration</li>
-          <li>Fabricated <strong>wire harnesses and connector assemblies</strong> for robot subsystems and resolved integration failures on hardware</li>
-          <li>Developed in-house <strong>data-capture gloves</strong>, built MuJoCo simulations of actuators and robot hands, and trained a <strong>sit-to-stand policy</strong> for the humanoid</li>
+  <section id="now">
+    <div class="wrap">
+      <h2>Right now at Foundation</h2>
+      <p class="section-intro">Foundation builds the Phantom humanoid for manufacturing work. I joined the build team in June 2026 and work across the robot, from single parts to full systems.</p>
+      <div class="now">
+        <div>
+          <p class="role">Robotics Build Engineer</p>
+          <p class="when">June 2026 to present, San Francisco</p>
+          <p>Most of my week is hands-on: building and testing actuators, bringing new robots up, and designing the hardware that makes those jobs faster and more repeatable. When something fails, I trace whether it's mechanical, electrical, or software and fix it at the source.</p>
+        </div>
+        <ul class="areas">
+          <li><strong>Actuators</strong><span>Build, calibrate, and dyno-test planetary gear actuators for torque, efficiency, and thermal behavior. Wrote the build, calibration, and test docs the team uses.</span></li>
+          <li><strong>Robot bring-up</strong><span>Forearm subassembly testing, actuator installation, and full-system bring-up on new humanoid builds.</span></li>
+          <li><strong>Mechanical design</strong><span>Fixtures, robot stands, and a compute bracket in SolidWorks, from requirements to drawings, fabrication, and fit checks.</span></li>
+          <li><strong>Harnesses</strong><span>Wire harnesses and connector assemblies for robot subsystems.</span></li>
+          <li><strong>Data gloves</strong><span>In-house data-capture gloves benchmarked against commercial motion-capture gloves.</span></li>
+          <li><strong>Simulation</strong><span>MuJoCo models of hands and actuators, and a sit-to-stand policy for the humanoid.</span></li>
         </ul>
       </div>
     </div>
+  </section>
 
-    <div class="exp-item reveal">
-      <div class="exp-meta">
-        <span class="exp-period">Jun – Sep 2025</span>
-        <span class="exp-org">Ahmedabad University</span>
-        <span class="exp-type">Internship</span>
-      </div>
-      <div class="exp-content">
-        <div class="exp-title">Robotics Engineering Intern</div>
-        <ul class="exp-bullets">
-          <li>Designed LiDAR and camera sensor mounts in SolidWorks; ANSYS FEA under dynamic vibration loading validated positional stability within <strong>0.8mm</strong></li>
-          <li>Applied GD&amp;T on critical datum features for sub-millimeter sensor alignment; fabricated parts via laser cutting with DFA for cable routing and serviceability</li>
-          <li>Developed a ROS2 navigation stack with CNN-based traffic detection, reaching <strong>85%</strong> rule compliance and <strong>92%</strong> perception accuracy at <strong>20Hz</strong></li>
-          <li>Executed sim-to-real transfer from Gazebo to the physical vehicle and built a Python telemetry dashboard for live monitoring</li>
-        </ul>
+  <section id="work">
+    <div class="wrap">
+      <h2>Selected projects</h2>
+      <p class="section-intro">Robots I designed and built end to end, mostly during my master's. Each one taught me something the CAD model didn't.</p>
+
+      <article class="project">
+        <div class="media tall"><img src="assets/img/quadruped.jpg" alt="12-DOF quadruped robot with orange 3D-printed legs" loading="lazy"></div>
+        <div>
+          <h3>12-DOF quadruped robot</h3>
+          <p class="tags">SolidWorks, ANSYS FEA, Arduino C++, 3D printing. UC Riverside, 2025.</p>
+          <p>Designed, printed, wired, and programmed a four-legged robot from scratch. I sized 12 servos from joint torque requirements, added a hip adduction mechanism for side-to-side balance, and used FEA to strip material from low-stress regions of the legs.</p>
+          <p>Getting it to walk meant fixing problems I hadn't planned for: the Arduino reset from voltage sag, servos overheated inside the chassis, and cables fatigued at the joints. I upgraded the power wiring, redesigned the chassis for airflow, and rerouted the harness.</p>
+          <table class="results">
+            <tr><th>Stiffness-to-weight gain from FEA</th><td>25%</td></tr>
+            <tr><th>Actuators</th><td>12 servos</td></tr>
+            <tr><th>Outcome</th><td>Stable walking on uneven terrain</td></tr>
+          </table>
+          <a class="project-link" href="https://github.com/Shubh131102/12-DOF-Quadruped-Spider-Robot" target="_blank" rel="noopener">Code and build notes on GitHub</a>
+        </div>
+      </article>
+
+      <article class="project">
+        <div class="thesis-panel">
+          <h4>How the system works</h4>
+          <ol>
+            <li>A policy learns to navigate from expert demonstrations using DAgger.</li>
+            <li>Monte Carlo Dropout estimates how unsure the policy is at every step.</li>
+            <li>When uncertainty rises, the robot slows down, and LiDAR safety zones act as a backstop.</li>
+            <li>Hard cases feed back into training, so the policy improves where it was weakest.</li>
+          </ol>
+        </div>
+        <div>
+          <h3>Uncertainty-aware imitation learning</h3>
+          <p class="tags">MS thesis. PyTorch, ROS2, LiDAR. UC Riverside, 2025.</p>
+          <p>A navigation policy that knows when not to trust itself. I took it out of simulation and onto physical robots across three indoor environments.</p>
+          <table class="results">
+            <tr><th>Collisions in real-world tests</th><td>0</td></tr>
+            <tr><th>Task success</th><td>92%</td></tr>
+            <tr><th>Reduction in navigation uncertainty</th><td>43%</td></tr>
+            <tr><th>High-uncertainty events</th><td>99.8% down to 28.6%</td></tr>
+            <tr><th>Training convergence</th><td>5× faster</td></tr>
+          </table>
+          <a class="project-link" href="https://github.com/Shubh131102/Uncertainty-Aware-Imitation-Learning-for-Indoor-Navigation" target="_blank" rel="noopener">Code on GitHub</a>
+        </div>
+      </article>
+
+      <article class="project">
+        <div class="media pair">
+          <video src="assets/img/auv-pool.mp4" poster="assets/img/auv-pool-poster.jpg" muted loop playsinline controls preload="none" aria-label="Pool test of the fin propulsion mechanism"></video>
+          <img src="assets/img/auv-render.jpg" alt="Rendered AUV hull with fins along both sides" loading="lazy">
+          <img src="assets/img/auv-cad.jpg" alt="Annotated CAD of the fin mechanism" loading="lazy" style="grid-column: 1 / -1">
+        </div>
+        <div>
+          <h3>HydroMech: fin-propelled underwater vehicle</h3>
+          <p class="tags">SolidWorks, ANSYS, CFD, servo control. Ahmedabad University, 2025.</p>
+          <p>An underwater vehicle that swims like a cuttlefish. One servo drives a crankshaft and gear train that ripples 18 fins in a traveling wave. I refined the hull shape with CFD, optimized the mounts with stress and deflection analysis, and sealed the electronics with rotary lip seals.</p>
+          <table class="results">
+            <tr><th>Fins driven by one mechanism</th><td>18</td></tr>
+            <tr><th>Fin oscillation</th><td>About 3 Hz</td></tr>
+            <tr><th>Outcome</th><td>Forward propulsion in pool tests</td></tr>
+          </table>
+          <a class="project-link" href="https://github.com/Shubh131102/HydroMech-Fin-Propelled-AUV" target="_blank" rel="noopener">Design files on GitHub</a>
+        </div>
+      </article>
+
+      <article class="project">
+        <div class="media">
+          <img src="assets/img/av-sim.jpg" alt="Gazebo simulation of the autonomous vehicle track with pedestrians and traffic signs" loading="lazy">
+          <img src="assets/img/av-dashboard.jpg" alt="Web telemetry dashboard showing speed, steering angle, and driving mode" loading="lazy">
+        </div>
+        <div>
+          <h3>Autonomous vehicle platform</h3>
+          <p class="tags">ROS2, SolidWorks, ANSYS, CNN perception. Bosch Future Mobility Challenge, 2025.</p>
+          <p>A small self-driving car built from the sensor mounts up. I designed the LiDAR and camera mount and validated it under vibration with FEA, then built the ROS2 stack: traffic-sign and pedestrian detection, path planning, and a live telemetry dashboard. We moved it from Gazebo to the real car.</p>
+          <table class="results">
+            <tr><th>Sensor mount stability under vibration</th><td>Within 0.8 mm</td></tr>
+            <tr><th>Traffic rule compliance</th><td>85%</td></tr>
+            <tr><th>Perception</th><td>92% accuracy at 20 Hz</td></tr>
+          </table>
+          <a class="project-link" href="https://github.com/Shubh131102/Bfmc-Autonomous-Vehicle" target="_blank" rel="noopener">Code on GitHub</a>
+        </div>
+      </article>
+
+      <article class="project">
+        <div class="media"><img src="assets/img/slam-map.jpg" alt="RViz occupancy map built by the TurtleBot3 during SLAM exploration" loading="lazy"></div>
+        <div>
+          <h3>SLAM and autonomous exploration</h3>
+          <p class="tags">ROS2, SLAM Toolbox, Nav2, LiDAR. UC Riverside, 2025.</p>
+          <p>A TurtleBot3 that maps an unknown room on its own. SLAM Toolbox builds the map, Nav2 plans with A* and avoids obstacles with DWB, and frontier exploration decides where to go next. Tuning the exploration parameters made the maps noticeably cleaner.</p>
+          <table class="results">
+            <tr><th>Map accuracy improvement</th><td>15%</td></tr>
+            <tr><th>Real-time mapping rate</th><td>10 Hz</td></tr>
+          </table>
+          <a class="project-link" href="https://github.com/Shubh131102/Hybrid-Astar-Slam-Navigation" target="_blank" rel="noopener">Code on GitHub</a>
+        </div>
+      </article>
+
+      <article class="project">
+        <div class="media tall"><img src="assets/img/firefighting.jpg" alt="Firefighting robot with wooden chassis and launcher tube" loading="lazy"></div>
+        <div>
+          <h3>Firefighting mobile robot</h3>
+          <p class="tags">SolidWorks, Webots, Arduino C++. PDEU, 2024.</p>
+          <p>A robot that finds a fire and launches an extinguisher ball at it. I designed the chassis, motor mounts, and a spring launcher set at 45°, wrote the Arduino firmware for flame detection and launch, and fused IR, ultrasonic, and temperature sensors in Webots.</p>
+          <table class="results">
+            <tr><th>Launch range</th><td>30 m</td></tr>
+            <tr><th>Fire detection in simulation</th><td>90%</td></tr>
+          </table>
+          <a class="project-link" href="https://github.com/Shubh131102/fire-fighting-mobile-robot" target="_blank" rel="noopener">Code on GitHub</a>
+        </div>
+      </article>
+
+      <div class="more">
+        <article>
+          <h3>Fault-tolerant propulsion control</h3>
+          <p>Compared PID, LQR, MPC, and sliding mode control for vehicle propulsion, with fault detection that switches controllers when an actuator or sensor fails. Recovered from disturbances 40% faster than baseline PID.</p>
+        </article>
+        <article>
+          <h3>Manipulator end effector</h3>
+          <p>Designed the brackets, base mount, and end effector for a robot arm at UC Riverside, and built a fixture to measure repeatability. Held positional accuracy within 1 mm.</p>
+        </article>
+        <article>
+          <h3>Heat exchanger efficiency</h3>
+          <p>At ONGC, analyzed flow in shell-and-tube heat exchangers and refined flow paths for a 12% efficiency gain. Built a maintenance model that cut drilling equipment downtime by 20%.</p>
+        </article>
       </div>
     </div>
+  </section>
 
-    <div class="exp-item reveal">
-      <div class="exp-meta">
-        <span class="exp-period">Jan – Mar 2025</span>
-        <span class="exp-org">UC Riverside</span>
-        <span class="exp-type">Research</span>
-      </div>
-      <div class="exp-content">
-        <div class="exp-title">Robotics Research Intern</div>
-        <ul class="exp-bullets">
-          <li>Designed brackets, base mount, and end effector for a robotic manipulator; validated with ANSYS FEA and a test fixture showing <strong>1mm</strong> positional repeatability</li>
-          <li>Implemented SLAM-based exploration on TurtleBot3 with ROS2, SLAM Toolbox, and Nav2 (A* global planning, DWB local control)</li>
-          <li>Tuned frontier exploration for a <strong>15%</strong> map accuracy improvement at <strong>10Hz</strong></li>
-        </ul>
+  <section id="experience">
+    <div class="wrap">
+      <h2>Experience</h2>
+      <p class="section-intro">Most recent first.</p>
+      <ol class="timeline">
+        <li class="current">
+          <p class="t-when">June 2026 to present</p>
+          <p class="t-role">Robotics Build Engineer, Foundation</p>
+          <ul>
+            <li>Actuator build, calibration, and dyno testing, with the team's build and test documentation</li>
+            <li>Bring-up of new humanoid robots, from subassemblies to full systems</li>
+            <li>Fixtures, robot stands, brackets, harnesses, data gloves, and MuJoCo simulation</li>
+          </ul>
+        </li>
+        <li>
+          <p class="t-when">June to September 2025</p>
+          <p class="t-role">Robotics Engineering Intern, Ahmedabad University</p>
+          <ul>
+            <li>Sensor mount design validated with FEA, plus a full ROS2 autonomy stack for a self-driving car</li>
+            <li>HydroMech fin-propelled underwater vehicle</li>
+          </ul>
+        </li>
+        <li>
+          <p class="t-when">June to August 2025</p>
+          <p class="t-role">AI/ML Intern, Labmentix (remote)</p>
+          <ul>
+            <li>Model development, data preprocessing, and experiments for educational applications</li>
+          </ul>
+        </li>
+        <li>
+          <p class="t-when">January to March 2025</p>
+          <p class="t-role">Robotics Research Intern, UC Riverside</p>
+          <ul>
+            <li>Manipulator end effector and repeatability fixture, plus SLAM exploration on TurtleBot3</li>
+          </ul>
+        </li>
+        <li>
+          <p class="t-when">January to May 2024</p>
+          <p class="t-role">Mechatronics Engineering Intern, PDEU</p>
+          <ul>
+            <li>Firefighting robot design and firmware, and a DC motor cooling fix that cut temperature by 20°C</li>
+          </ul>
+        </li>
+        <li>
+          <p class="t-when">May to June 2023</p>
+          <p class="t-role">Mechanical Engineering Intern, ONGC</p>
+          <ul>
+            <li>Heat exchanger flow analysis and a maintenance model for drilling equipment</li>
+          </ul>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section id="skills">
+    <div class="wrap">
+      <h2>Tools I use</h2>
+      <p class="section-intro">Grouped by the kind of work, not by how well they look on a list.</p>
+      <div class="skills">
+        <div><h3>Mechanical design</h3><p>SolidWorks, Fusion 360, CATIA, GD&amp;T (ASME Y14.5), tolerance stacks, DFM and DFA, mechanisms and linkages, fixtures</p></div>
+        <div><h3>Build and test</h3><p>Actuator assembly and calibration, dynamometer testing, robot bring-up, wire harnesses, root-cause analysis, test documentation</p></div>
+        <div><h3>Analysis and simulation</h3><p>ANSYS FEA (static, dynamic, thermal, vibration), CFD, MuJoCo, Gazebo, Webots, MATLAB and Simulink</p></div>
+        <div><h3>Robotics software</h3><p>ROS2, Nav2, SLAM, sensor fusion, path planning, PID, MPC</p></div>
+        <div><h3>Learning and perception</h3><p>PyTorch, imitation learning, policy training, CNNs, OpenCV, LiDAR and camera pipelines</p></div>
+        <div><h3>Code and fabrication</h3><p>Python, C++, Git, Linux, Arduino, ESP32, Raspberry Pi, 3D printing, CNC machining, laser cutting, sheet metal</p></div>
       </div>
     </div>
+  </section>
 
-    <div class="exp-item reveal">
-      <div class="exp-meta">
-        <span class="exp-period">Jan – May 2024</span>
-        <span class="exp-org">PDEU</span>
-        <span class="exp-type">Internship</span>
-      </div>
-      <div class="exp-content">
-        <div class="exp-title">Mechatronics Engineering Intern</div>
-        <ul class="exp-bullets">
-          <li>Designed and fabricated a firefighting robot's chassis, motor mounts, and a spring launcher reaching <strong>30m</strong> range at 45°</li>
-          <li>Diagnosed DC motor thermal failures and engineered a cooling fix that cut operating temperature by <strong>20°C</strong></li>
-          <li>Built a Webots simulation with IR, ultrasonic, and temperature sensor fusion reaching <strong>90%</strong> fire detection accuracy; wrote Arduino C++ firmware</li>
-        </ul>
+  <section id="education">
+    <div class="wrap">
+      <h2>Education</h2>
+      <div class="edu">
+        <div><h3>MS, Robotics</h3><p>University of California, Riverside, 2024 to 2025. GPA 3.7. Thesis on uncertainty-aware imitation learning.</p></div>
+        <div><h3>BE, Mechanical Engineering</h3><p>Pandit Deendayal Energy University, India, 2020 to 2024.</p></div>
+        <div><h3>Diploma, Mechanical Engineering</h3><p>VPMP Polytechnic, India, 2018 to 2020. GPA 3.9.</p></div>
       </div>
     </div>
+  </section>
 
-    <div class="exp-item reveal">
-      <div class="exp-meta">
-        <span class="exp-period">May – Jun 2023</span>
-        <span class="exp-org">ONGC</span>
-        <span class="exp-type">Internship</span>
+  <div class="contact" id="contact">
+    <div class="wrap">
+      <h2>Building robots? Let's talk.</h2>
+      <p>I'm always glad to hear from people working on actuators, mechanisms, humanoids, or the hardware that keeps robots running. I'm in San Francisco on F-1 OPT, STEM extension eligible.</p>
+      <div class="hero-links">
+        <a class="btn primary" href="mailto:shubhamjangle13@gmail.com">Email me</a>
+        <a class="btn" href="https://www.linkedin.com/in/shubham-jangle-43081b27a/" target="_blank" rel="noopener">LinkedIn</a>
       </div>
-      <div class="exp-content">
-        <div class="exp-title">Mechanical Engineering Intern</div>
-        <ul class="exp-bullets">
-          <li>Ran thermal and fluid flow analyses on shell-and-tube heat exchangers, improving efficiency by <strong>12%</strong> through flow path changes</li>
-          <li>Built a maintenance model from historical failure data for drilling equipment, reducing downtime by <strong>20%</strong></li>
-        </ul>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<!-- PROJECTS -->
-<div class="full-border"></div>
-<section id="projects">
-  <div class="section-header reveal">
-    <span class="section-num">03</span>
-    <h2>Projects</h2>
-    <div class="section-line"></div>
-  </div>
-  <div class="projects-grid">
-
-    <a href="https://github.com/Shubh131102/12-DOF-Quadruped-Spider-Robot" target="_blank" rel="noopener" class="project-card reveal">
-      <div class="project-num">01 — Mechanical + Software</div>
-      <div class="project-title">12-DOF Quadruped Robot</div>
-      <p class="project-desc">Designed, built, and debugged a quadruped from scratch. Sized 12 servos from joint torque requirements, used FEA to strip low-stress material from the legs, added a hip adduction mechanism for balance, and fixed voltage sag, overheating, and cable fatigue until it walked reliably on uneven terrain.</p>
-      <div class="project-metrics">
-        <span class="metric">25% stiffness-to-weight</span>
-        <span class="metric">12 actuators</span>
-        <span class="metric">Uneven terrain</span>
-      </div>
-      <div class="project-tags">
-        <span class="tag">SolidWorks</span>
-        <span class="tag">ANSYS FEA</span>
-        <span class="tag">Arduino C++</span>
-        <span class="tag">3D Printing</span>
-      </div>
-      <div class="project-footer">
-        <span class="project-link">View on GitHub <span class="project-arrow">↗</span></span>
-      </div>
-    </a>
-
-    <a href="https://github.com/Shubh131102/Uncertainty-Aware-Imitation-Learning-for-Indoor-Navigation" target="_blank" rel="noopener" class="project-card reveal">
-      <div class="project-num">02 — MS Thesis</div>
-      <div class="project-title">Uncertainty-Aware Imitation Learning</div>
-      <p class="project-desc">Combined DAgger imitation learning with Monte Carlo Dropout so the robot knows when not to trust its own policy, then slows down. Deployed the full PyTorch and ROS2 stack on physical robots across three indoor environments with zero collisions.</p>
-      <div class="project-metrics">
-        <span class="metric">43% less uncertainty</span>
-        <span class="metric">5× faster convergence</span>
-        <span class="metric">92% task success</span>
-      </div>
-      <div class="project-tags">
-        <span class="tag">ROS2</span>
-        <span class="tag">PyTorch</span>
-        <span class="tag">DAgger</span>
-        <span class="tag">LiDAR</span>
-      </div>
-      <div class="project-footer">
-        <span class="project-link">View on GitHub <span class="project-arrow">↗</span></span>
-      </div>
-    </a>
-
-    <a href="https://github.com/Shubh131102/Bfmc-Autonomous-Vehicle" target="_blank" rel="noopener" class="project-card reveal">
-      <div class="project-num">03 — Mechanical + Software</div>
-      <div class="project-title">Autonomous Vehicle Platform</div>
-      <p class="project-desc">End-to-end autonomous vehicle for the Bosch Future Mobility Challenge, from FEA-validated sensor mounts to a ROS2 navigation stack with camera and LiDAR perception, validated in the real world after sim-to-real transfer.</p>
-      <div class="project-metrics">
-        <span class="metric">0.8mm stability</span>
-        <span class="metric">85% rule compliance</span>
-        <span class="metric">20Hz perception</span>
-      </div>
-      <div class="project-tags">
-        <span class="tag">ROS2</span>
-        <span class="tag">SolidWorks</span>
-        <span class="tag">ANSYS</span>
-        <span class="tag">CNN</span>
-        <span class="tag">GD&amp;T</span>
-      </div>
-      <div class="project-footer">
-        <span class="project-link">View on GitHub <span class="project-arrow">↗</span></span>
-      </div>
-    </a>
-
-    <a href="https://github.com/Shubh131102/HydroMech-Fin-Propelled-AUV" target="_blank" rel="noopener" class="project-card reveal">
-      <div class="project-num">04 — Mechanical</div>
-      <div class="project-title">HydroMech: Bio-Inspired AUV</div>
-      <p class="project-desc">An 18-fin undulatory propulsion mechanism driven by a crankshaft and gear train. Hull geometry refined with CFD, mounts optimized with ANSYS stress and deflection analysis, and electronics sealed with rotary lip seals. Forward propulsion validated in the pool.</p>
-      <div class="project-metrics">
-        <span class="metric">18-fin mechanism</span>
-        <span class="metric">~3Hz oscillation</span>
-        <span class="metric">Pool validated</span>
-      </div>
-      <div class="project-tags">
-        <span class="tag">SolidWorks</span>
-        <span class="tag">ANSYS</span>
-        <span class="tag">CFD</span>
-        <span class="tag">Servo Control</span>
-      </div>
-      <div class="project-footer">
-        <span class="project-link">View on GitHub <span class="project-arrow">↗</span></span>
-      </div>
-    </a>
-
-    <a href="https://github.com/Shubh131102/Hybrid-Astar-Slam-Navigation" target="_blank" rel="noopener" class="project-card reveal">
-      <div class="project-num">05 — Software</div>
-      <div class="project-title">SLAM Navigation Stack</div>
-      <p class="project-desc">Autonomous exploration of unknown indoor spaces on TurtleBot3: SLAM Toolbox for mapping, Nav2 with A* and DWB for planning, and tuned frontier exploration for better maps in real time.</p>
-      <div class="project-metrics">
-        <span class="metric">15% map accuracy</span>
-        <span class="metric">10Hz real-time</span>
-      </div>
-      <div class="project-tags">
-        <span class="tag">ROS2</span>
-        <span class="tag">SLAM Toolbox</span>
-        <span class="tag">Nav2</span>
-        <span class="tag">LiDAR</span>
-      </div>
-      <div class="project-footer">
-        <span class="project-link">View on GitHub <span class="project-arrow">↗</span></span>
-      </div>
-    </a>
-
-    <a href="https://github.com/Shubh131102/fire-fighting-mobile-robot" target="_blank" rel="noopener" class="project-card reveal">
-      <div class="project-num">06 — Mechanical + Software</div>
-      <div class="project-title">Firefighting Mobile Robot</div>
-      <p class="project-desc">Autonomous robot that finds a fire and launches an extinguisher ball at it. SolidWorks chassis and spring launcher, multi-sensor fusion in Webots, and Arduino C++ firmware with WiFi override.</p>
-      <div class="project-metrics">
-        <span class="metric">90% detection</span>
-        <span class="metric">30m launch range</span>
-      </div>
-      <div class="project-tags">
-        <span class="tag">SolidWorks</span>
-        <span class="tag">Webots</span>
-        <span class="tag">Arduino C++</span>
-      </div>
-      <div class="project-footer">
-        <span class="project-link">View on GitHub <span class="project-arrow">↗</span></span>
-      </div>
-    </a>
-
-    <a href="https://github.com/Shubh131102" target="_blank" rel="noopener" class="project-card reveal">
-      <div class="project-num">07 — Controls</div>
-      <div class="project-title">Fault-Tolerant Propulsion Control</div>
-      <p class="project-desc">Compared PID, MPC, LQR, and sliding mode control for autonomous vehicle propulsion, with residual-based fault detection that reconfigures the controller on the fly to stay stable through actuator and sensor faults.</p>
-      <div class="project-metrics">
-        <span class="metric">40% faster disturbance recovery</span>
-        <span class="metric">Automatic reconfiguration</span>
-      </div>
-      <div class="project-tags">
-        <span class="tag">MATLAB</span>
-        <span class="tag">Simulink</span>
-        <span class="tag">Python</span>
-        <span class="tag">MPC</span>
-      </div>
-      <div class="project-footer">
-        <span class="project-link">View on GitHub <span class="project-arrow">↗</span></span>
-      </div>
-    </a>
-
-  </div>
-</section>
-
-<!-- SKILLS -->
-<div class="full-border"></div>
-<section id="skills">
-  <div class="section-header reveal">
-    <span class="section-num">04</span>
-    <h2>Skills</h2>
-    <div class="section-line"></div>
-  </div>
-  <div class="skills-grid reveal">
-    <div class="skill-group">
-      <div class="skill-group-title">Mechanical Design</div>
-      <div class="skill-tags">
-        <span class="tag">SolidWorks</span>
-        <span class="tag">CATIA</span>
-        <span class="tag">Fusion 360</span>
-        <span class="tag">GD&amp;T (ASME Y14.5)</span>
-        <span class="tag">Tolerance Analysis</span>
-        <span class="tag">DFM/DFA</span>
-        <span class="tag">Fixture &amp; Bracket Design</span>
-      </div>
-    </div>
-    <div class="skill-group">
-      <div class="skill-group-title">Build, Test &amp; Integration</div>
-      <div class="skill-tags">
-        <span class="tag">Actuator Assembly</span>
-        <span class="tag">Dynamometer Testing</span>
-        <span class="tag">Calibration</span>
-        <span class="tag">Robot Bring-Up</span>
-        <span class="tag">Wire Harnesses</span>
-        <span class="tag">Root-Cause Analysis</span>
-      </div>
-    </div>
-    <div class="skill-group">
-      <div class="skill-group-title">Analysis &amp; Simulation</div>
-      <div class="skill-tags">
-        <span class="tag">ANSYS FEA</span>
-        <span class="tag">Vibration &amp; Thermal</span>
-        <span class="tag">CFD</span>
-        <span class="tag">MuJoCo</span>
-        <span class="tag">MATLAB</span>
-        <span class="tag">Simulink</span>
-      </div>
-    </div>
-    <div class="skill-group">
-      <div class="skill-group-title">Robotics &amp; Autonomy</div>
-      <div class="skill-tags">
-        <span class="tag">ROS2</span>
-        <span class="tag">SLAM</span>
-        <span class="tag">Nav2</span>
-        <span class="tag">Gazebo</span>
-        <span class="tag">Sensor Fusion</span>
-        <span class="tag">PID / MPC</span>
-      </div>
-    </div>
-    <div class="skill-group">
-      <div class="skill-group-title">AI &amp; Perception</div>
-      <div class="skill-tags">
-        <span class="tag">PyTorch</span>
-        <span class="tag">Imitation Learning</span>
-        <span class="tag">Policy Training</span>
-        <span class="tag">CNNs</span>
-        <span class="tag">OpenCV</span>
-        <span class="tag">LiDAR</span>
-      </div>
-    </div>
-    <div class="skill-group">
-      <div class="skill-group-title">Programming &amp; Fabrication</div>
-      <div class="skill-tags">
-        <span class="tag">Python</span>
-        <span class="tag">C++</span>
-        <span class="tag">Git</span>
-        <span class="tag">Linux</span>
-        <span class="tag">3D Printing</span>
-        <span class="tag">CNC Machining</span>
-        <span class="tag">Laser Cutting</span>
-        <span class="tag">Sheet Metal</span>
+      <div class="contact-grid">
+        <a href="mailto:shubhamjangle13@gmail.com">shubhamjangle13@gmail.com</a>
+        <a href="tel:+18583109534">+1 (858) 310-9534</a>
+        <a href="https://github.com/Shubh131102" target="_blank" rel="noopener">github.com/Shubh131102</a>
+        <span>San Francisco, California</span>
       </div>
     </div>
   </div>
-</section>
+</main>
 
-<!-- CONTACT -->
-<div class="full-border"></div>
-<section id="contact">
-  <div class="section-header reveal">
-    <span class="section-num">05</span>
-    <h2>Contact</h2>
-    <div class="section-line"></div>
-  </div>
-  <div class="contact-grid">
-    <div class="contact-text reveal">
-      <h3>Let's talk robots.</h3>
-      <p>I'm always happy to connect with people building robotics hardware, whether it's actuators, mechanisms, humanoids, or the systems that bring them to life.</p>
-      <div class="contact-links">
-        <a href="mailto:shubhamjangle13@gmail.com" class="contact-link">
-          <span class="contact-link-type">Email</span>
-          <span class="contact-link-label">shubhamjangle13@gmail.com</span>
-        </a>
-        <a href="https://www.linkedin.com/in/shubham-jangle-43081b27a/" target="_blank" rel="noopener" class="contact-link">
-          <span class="contact-link-type">LinkedIn</span>
-          <span class="contact-link-label">shubham-jangle-43081b27a</span>
-        </a>
-        <a href="https://github.com/Shubh131102" target="_blank" rel="noopener" class="contact-link">
-          <span class="contact-link-type">GitHub</span>
-          <span class="contact-link-label">Shubh131102</span>
-        </a>
-        <a href="tel:+18583109534" class="contact-link">
-          <span class="contact-link-type">Phone</span>
-          <span class="contact-link-label">+1 (858) 310-9534</span>
-        </a>
-      </div>
-    </div>
-    <div class="contact-avail reveal">
-      <div class="avail-title">At a Glance</div>
-      <div class="avail-item">
-        <div class="avail-dot"></div>
-        Based in San Francisco, California
-      </div>
-      <div class="avail-item">
-        <div class="avail-dot"></div>
-        Humanoid hardware: design, build, test, bring-up
-      </div>
-      <div class="avail-item">
-        <div class="avail-dot"></div>
-        F-1 OPT, STEM extension eligible
-      </div>
-      <div class="avail-item">
-        <div class="avail-dot"></div>
-        Open to relocation within the US
-      </div>
-      <div style="margin-top: 1.5rem;">
-        <a href="mailto:shubhamjangle13@gmail.com" class="btn-primary" style="width: 100%; justify-content: center; display: flex;">Send a Message ↗</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- FOOTER -->
 <footer>
-  <span class="footer-copy">© 2026 Shubham Jangle — Robotics Engineer</span>
-  <div class="footer-links">
-    <a href="https://github.com/Shubh131102" target="_blank" rel="noopener">GitHub</a>
-    <a href="https://www.linkedin.com/in/shubham-jangle-43081b27a/" target="_blank" rel="noopener">LinkedIn</a>
-    <a href="mailto:shubhamjangle13@gmail.com">Email</a>
-  </div>
+  <div class="wrap">© 2026 Shubham Jangle</div>
 </footer>
 
 <script>
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach((entry) => {
-    if (entry.isIntersecting) {
-      setTimeout(() => entry.target.classList.add('visible'), 100);
-      observer.unobserve(entry.target);
-    }
-  });
-}, { threshold: 0.1 });
-document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  // Respect reduced-motion: pause the autoplaying hero clip.
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    document.querySelectorAll('video[autoplay]').forEach(v => { v.removeAttribute('autoplay'); v.pause(); v.controls = true; });
+  }
 </script>
-
 </body>
 </html>
