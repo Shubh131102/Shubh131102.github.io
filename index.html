@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Shubham Jangle, Robotics Engineer</title>
-<meta name="description" content="Shubham Jangle designs, builds, and tests humanoid robot hardware. Robotics Build Engineer at Foundation, MS Robotics from UC Riverside.">
-<meta property="og:title" content="Shubham Jangle, Robotics Engineer">
-<meta property="og:description" content="I design, build, and test robot hardware: actuators, mechanisms, fixtures, and full humanoid bring-up.">
+<title>Shubham Jangle, Humanoid Robotics Engineer</title>
+<meta name="description" content="Shubham Jangle is a humanoid robotics engineer who builds, tests, and brings up humanoid robots at Foundation. MS Robotics, UC Riverside.">
+<meta property="og:title" content="Shubham Jangle, Humanoid Robotics Engineer">
+<meta property="og:description" content="I build humanoid robots: actuators on the dyno, limbs and hands on the bench, and full robots through bring-up.">
 <meta property="og:image" content="assets/img/quadruped.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -111,6 +111,25 @@
   .areas strong { font-weight: 650; }
   .areas span { color: #3a4544; }
 
+
+  .title {
+    margin: 14px 0 0; font-size: clamp(1.4rem, 3.2vw, 2.4rem); font-weight: 500;
+    font-stretch: 112%; color: var(--teal); letter-spacing: -0.01em;
+  }
+  .stack { border-top: 2px solid var(--ink); }
+  .stack-head, .stack-row { display: grid; grid-template-columns: 13rem 1fr 1fr; gap: 32px; }
+  .stack-head { padding: 12px 0; border-bottom: 1px solid var(--line); color: var(--steel); font-size: 15px; }
+  .stack-row { padding: 22px 0; border-bottom: 1px solid var(--line); }
+  .stack-row h3 { font-size: 1.2rem; margin: 0; }
+  .stack-row p { margin: 0; color: #3a4544; font-size: 16px; }
+  .stack-row p:first-of-type { color: var(--ink); }
+  @media (max-width: 900px) {
+    .stack-head { display: none; }
+    .stack-row { grid-template-columns: 1fr; gap: 8px; }
+    .stack-row p:first-of-type::before { content: 'At Foundation: '; font-weight: 650; }
+    .stack-row p:last-of-type::before { content: 'Before: '; font-weight: 650; color: var(--ink); }
+  }
+
   /* Projects */
   .project { display: grid; grid-template-columns: 1.1fr 1fr; gap: 48px; padding: 48px 0; border-top: 1px solid var(--line); align-items: start; }
   .project:nth-of-type(even) > :first-child { order: 2; }
@@ -198,7 +217,7 @@
   <div class="wrap">
     <a class="mark" href="#top">Shubham Jangle</a>
     <nav class="nav" aria-label="Main">
-      <a href="#now">Foundation</a>
+      <a href="#stack">Humanoid work</a>
       <a href="#work">Projects</a>
       <a href="#experience">Experience</a>
       <a href="#skills">Skills</a>
@@ -211,10 +230,11 @@
   <div class="hero">
     <div class="wrap">
       <h1>Shubham<br>Jangle</h1>
+      <p class="title">Humanoid robotics engineer</p>
       <div class="hero-row">
-        <p class="lede">I design, build, and test robot hardware, from the actuator on the dyno to the <mark>humanoid standing up</mark> for the first time.</p>
+        <p class="lede">I build humanoid robots, from the actuator on the dyno to the <mark>robot standing up</mark> for the first time.</p>
         <div class="hero-meta">
-          <p>Robotics Build Engineer at Foundation in San Francisco, working on the Phantom humanoid. MS in Robotics from UC Riverside, BE in Mechanical Engineering.</p>
+          <p>Robotics Build Engineer at Foundation in San Francisco, building the Phantom humanoid. Before that, legged robots, robot learning, and mechanisms during my MS in Robotics at UC Riverside.</p>
           <div class="hero-links">
             <a class="btn primary" href="mailto:shubhamjangle13@gmail.com">Email me</a>
             <a class="btn" href="https://www.linkedin.com/in/shubham-jangle-43081b27a/" target="_blank" rel="noopener">LinkedIn</a>
@@ -231,37 +251,54 @@
     </div>
   </div>
 
-  <section id="now">
+  <section id="stack">
     <div class="wrap">
-      <h2>Right now at Foundation</h2>
-      <p class="section-intro">Foundation builds the Phantom humanoid for manufacturing work. I joined the build team in June 2026 and work across the robot, from single parts to full systems.</p>
-      <div class="now">
-        <div>
-          <p class="role">Robotics Build Engineer</p>
-          <p class="when">June 2026 to present, San Francisco</p>
-          <p>Most of my week is hands-on: building and testing actuators, bringing new robots up, and designing the hardware that makes those jobs faster and more repeatable. When something fails, I trace whether it's mechanical, electrical, or software and fix it at the source.</p>
+      <h2>Across the humanoid stack</h2>
+      <p class="section-intro">A humanoid only works when every layer works together. Here's where I've worked at each layer, at Foundation on the Phantom humanoid since June 2026, and in the robots I built before.</p>
+      <div class="stack" role="table" aria-label="My work at each layer of a humanoid robot">
+        <div class="stack-head" role="row">
+          <span role="columnheader">Layer</span>
+          <span role="columnheader">At Foundation</span>
+          <span role="columnheader">Before</span>
         </div>
-        <ul class="areas">
-          <li><strong>Actuators</strong><span>Build, calibrate, and dyno-test planetary gear actuators for torque, efficiency, and thermal behavior. Wrote the build, calibration, and test docs the team uses.</span></li>
-          <li><strong>Robot bring-up</strong><span>Forearm subassembly testing, actuator installation, and full-system bring-up on new humanoid builds.</span></li>
-          <li><strong>Mechanical design</strong><span>Fixtures, robot stands, and a compute bracket in SolidWorks, from requirements to drawings, fabrication, and fit checks.</span></li>
-          <li><strong>Harnesses</strong><span>Wire harnesses and connector assemblies for robot subsystems.</span></li>
-          <li><strong>Data gloves</strong><span>In-house data-capture gloves benchmarked against commercial motion-capture gloves.</span></li>
-          <li><strong>Simulation</strong><span>MuJoCo models of hands and actuators, and a sit-to-stand policy for the humanoid.</span></li>
-        </ul>
+        <div class="stack-row" role="row">
+          <h3 role="rowheader">Actuators</h3>
+          <p role="cell">Build, calibrate, and dyno-test planetary gear actuators for torque, efficiency, and thermal behavior. Wrote the build, calibration, and test docs the team uses.</p>
+          <p role="cell">Sized 12 actuators from joint torque for my quadruped. Fixed a DC motor overheating problem with a cooling redesign, down 20&nbsp;°C.</p>
+        </div>
+        <div class="stack-row" role="row">
+          <h3 role="rowheader">Limbs and hands</h3>
+          <p role="cell">Forearm subassembly testing, actuator installation into joints, and in-house data-capture gloves for hand data, benchmarked against commercial mocap gloves.</p>
+          <p role="cell">Designed quadruped legs with FEA for 25% better stiffness-to-weight, a hip adduction mechanism for balance, and a manipulator end effector held to 1&nbsp;mm repeatability.</p>
+        </div>
+        <div class="stack-row" role="row">
+          <h3 role="rowheader">Whole-robot bring-up</h3>
+          <p role="cell">Bring up new humanoid builds from subassemblies to a full system. Wire harnesses and connectors, and debugging failures across mechanical, electrical, and software.</p>
+          <p role="cell">Took the quadruped from parts to stable walking, tracking down voltage sag, overheating, and cable fatigue along the way.</p>
+        </div>
+        <div class="stack-row" role="row">
+          <h3 role="rowheader">Build support hardware</h3>
+          <p role="cell">Fixtures, robot stands, and a compute bracket designed in SolidWorks, from requirements to drawings, fabrication, and fit checks.</p>
+          <p role="cell">FEA-validated sensor mounts for an autonomous car, within 0.8&nbsp;mm under vibration.</p>
+        </div>
+        <div class="stack-row" role="row">
+          <h3 role="rowheader">Simulation and learning</h3>
+          <p role="cell">MuJoCo models of hands and actuators, and a sit-to-stand policy for the humanoid.</p>
+          <p role="cell">MS thesis on uncertainty-aware imitation learning with zero collisions and 92% task success, plus ROS2 navigation and perception stacks.</p>
+        </div>
       </div>
     </div>
   </section>
 
   <section id="work">
     <div class="wrap">
-      <h2>Selected projects</h2>
-      <p class="section-intro">Robots I designed and built end to end, mostly during my master's. Each one taught me something the CAD model didn't.</p>
+      <h2>Robots I built before Foundation</h2>
+      <p class="section-intro">The building blocks of a humanoid, learned one robot at a time: legs and gaits, learned policies, mechanisms, and perception. I designed and built each of these end to end.</p>
 
       <article class="project">
         <div class="media tall"><img src="assets/img/quadruped.jpg" alt="12-DOF quadruped robot with orange 3D-printed legs" loading="lazy"></div>
         <div>
-          <h3>12-DOF quadruped robot</h3>
+          <h3>12-DOF quadruped: legged locomotion</h3>
           <p class="tags">SolidWorks, ANSYS FEA, Arduino C++, 3D printing. UC Riverside, 2025.</p>
           <p>Designed, printed, wired, and programmed a four-legged robot from scratch. I sized 12 servos from joint torque requirements, added a hip adduction mechanism for side-to-side balance, and used FEA to strip material from low-stress regions of the legs.</p>
           <p>Getting it to walk meant fixing problems I hadn't planned for: the Arduino reset from voltage sag, servos overheated inside the chassis, and cables fatigued at the joints. I upgraded the power wiring, redesigned the chassis for airflow, and rerouted the harness.</p>
@@ -285,7 +322,7 @@
           </ol>
         </div>
         <div>
-          <h3>Uncertainty-aware imitation learning</h3>
+          <h3>Uncertainty-aware imitation learning: robot learning</h3>
           <p class="tags">MS thesis. PyTorch, ROS2, LiDAR. UC Riverside, 2025.</p>
           <p>A navigation policy that knows when not to trust itself. I took it out of simulation and onto physical robots across three indoor environments.</p>
           <table class="results">
@@ -306,7 +343,7 @@
           <img src="assets/img/auv-cad.jpg" alt="Annotated CAD of the fin mechanism" loading="lazy" style="grid-column: 1 / -1">
         </div>
         <div>
-          <h3>HydroMech: fin-propelled underwater vehicle</h3>
+          <h3>HydroMech: a mechanism with 18 moving fins</h3>
           <p class="tags">SolidWorks, ANSYS, CFD, servo control. Ahmedabad University, 2025.</p>
           <p>An underwater vehicle that swims like a cuttlefish. One servo drives a crankshaft and gear train that ripples 18 fins in a traveling wave. I refined the hull shape with CFD, optimized the mounts with stress and deflection analysis, and sealed the electronics with rotary lip seals.</p>
           <table class="results">
@@ -390,7 +427,7 @@
           <p class="t-when">June 2026 to present</p>
           <p class="t-role">Robotics Build Engineer, Foundation</p>
           <ul>
-            <li>Actuator build, calibration, and dyno testing, with the team's build and test documentation</li>
+            <li>Building the Phantom humanoid: actuator build, calibration, and dyno testing, with the team's build and test documentation</li>
             <li>Bring-up of new humanoid robots, from subassemblies to full systems</li>
             <li>Fixtures, robot stands, brackets, harnesses, data gloves, and MuJoCo simulation</li>
           </ul>
@@ -463,8 +500,8 @@
 
   <div class="contact" id="contact">
     <div class="wrap">
-      <h2>Building robots? Let's talk.</h2>
-      <p>I'm always glad to hear from people working on actuators, mechanisms, humanoids, or the hardware that keeps robots running. I'm in San Francisco on F-1 OPT, STEM extension eligible.</p>
+      <h2>Building humanoids? Let's talk.</h2>
+      <p>I'm always glad to hear from teams building humanoids, whether it's actuators, hands, legs, or getting the whole robot to stand up and work. I'm in San Francisco on F-1 OPT, STEM extension eligible.</p>
       <div class="hero-links">
         <a class="btn primary" href="mailto:shubhamjangle13@gmail.com">Email me</a>
         <a class="btn" href="https://www.linkedin.com/in/shubham-jangle-43081b27a/" target="_blank" rel="noopener">LinkedIn</a>
